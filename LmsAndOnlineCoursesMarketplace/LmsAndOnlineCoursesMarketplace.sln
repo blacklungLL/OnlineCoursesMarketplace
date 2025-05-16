@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LmsAndOnlineCoursesMarketplace.MVC", "LmsAndOnlineCoursesMarketplace.MVC\LmsAndOnlineCoursesMarketplace.MVC.csproj", "{CA144943-231D-4AFE-960E-B9FD93F9ED96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{93A6F785-4116-4DBA-8F92-A9EC3D0B7650}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{79EB5B74-AA2B-4DB1-856F-8515801E0984}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{E9833EE7-9ABA-45C0-A683-6C288D7FBF71}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{14637AD7-30EF-4230-BD2A-57B662F105D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LmsAndOnlineCoursesMarketplace.Domain", "Core\LmsAndOnlineCoursesMarketplace.Domain\LmsAndOnlineCoursesMarketplace.Domain.csproj", "{DCA9311C-7FF6-46C8-92EC-60A03065E4BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LmsAndOnlineCoursesMarketplace.Application", "Core\LmsAndOnlineCoursesMarketplace.Application\LmsAndOnlineCoursesMarketplace.Application.csproj", "{59993AD9-3DAC-416B-AF89-E76FD4FE689E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LmsAndOnlineCoursesMarketplace.Persistence", "Infrastrucutre\LmsAndOnlineCoursesMarketplace.Persistence\LmsAndOnlineCoursesMarketplace.Persistence.csproj", "{B94FCF0C-7A07-4824-9182-7CAF609FC745}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LmsAndOnlineCoursesMarketplace.Infrastructure", "Infrastrucutre\LmsAndOnlineCoursesMarketplace.Infrastructure\LmsAndOnlineCoursesMarketplace.Infrastructure.csproj", "{676904F6-10C4-4DB7-B8F0-659533C36357}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LmsAndOnlineCoursesMarketplace.Shared", "Shared\LmsAndOnlineCoursesMarketplace.Shared\LmsAndOnlineCoursesMarketplace.Shared.csproj", "{E12E3BA5-ADD9-431B-80B2-3D4BED0EB3FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA144943-231D-4AFE-960E-B9FD93F9ED96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA144943-231D-4AFE-960E-B9FD93F9ED96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA144943-231D-4AFE-960E-B9FD93F9ED96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA144943-231D-4AFE-960E-B9FD93F9ED96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCA9311C-7FF6-46C8-92EC-60A03065E4BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCA9311C-7FF6-46C8-92EC-60A03065E4BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCA9311C-7FF6-46C8-92EC-60A03065E4BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCA9311C-7FF6-46C8-92EC-60A03065E4BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59993AD9-3DAC-416B-AF89-E76FD4FE689E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59993AD9-3DAC-416B-AF89-E76FD4FE689E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59993AD9-3DAC-416B-AF89-E76FD4FE689E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59993AD9-3DAC-416B-AF89-E76FD4FE689E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B94FCF0C-7A07-4824-9182-7CAF609FC745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B94FCF0C-7A07-4824-9182-7CAF609FC745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B94FCF0C-7A07-4824-9182-7CAF609FC745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B94FCF0C-7A07-4824-9182-7CAF609FC745}.Release|Any CPU.Build.0 = Release|Any CPU
+		{676904F6-10C4-4DB7-B8F0-659533C36357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{676904F6-10C4-4DB7-B8F0-659533C36357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{676904F6-10C4-4DB7-B8F0-659533C36357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{676904F6-10C4-4DB7-B8F0-659533C36357}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E12E3BA5-ADD9-431B-80B2-3D4BED0EB3FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E12E3BA5-ADD9-431B-80B2-3D4BED0EB3FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E12E3BA5-ADD9-431B-80B2-3D4BED0EB3FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E12E3BA5-ADD9-431B-80B2-3D4BED0EB3FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CA144943-231D-4AFE-960E-B9FD93F9ED96} = {E9833EE7-9ABA-45C0-A683-6C288D7FBF71}
+		{DCA9311C-7FF6-46C8-92EC-60A03065E4BD} = {93A6F785-4116-4DBA-8F92-A9EC3D0B7650}
+		{59993AD9-3DAC-416B-AF89-E76FD4FE689E} = {93A6F785-4116-4DBA-8F92-A9EC3D0B7650}
+		{B94FCF0C-7A07-4824-9182-7CAF609FC745} = {79EB5B74-AA2B-4DB1-856F-8515801E0984}
+		{676904F6-10C4-4DB7-B8F0-659533C36357} = {79EB5B74-AA2B-4DB1-856F-8515801E0984}
+		{E12E3BA5-ADD9-431B-80B2-3D4BED0EB3FE} = {14637AD7-30EF-4230-BD2A-57B662F105D3}
+	EndGlobalSection
+EndGlobal

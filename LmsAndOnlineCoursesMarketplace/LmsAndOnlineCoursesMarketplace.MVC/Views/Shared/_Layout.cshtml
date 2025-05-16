@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=9">
+    <meta name="description" content="Gambolthemes">
+    <meta name="author" content="Gambolthemes">
+    <title>Cursus - Index</title>
+
+    <!-- Favicon Icon -->
+    <link rel="icon" type="image/png" href="~/assets/images/fav.png">
+
+    <!-- Stylesheets -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,500' rel='stylesheet'>
+    <link href='~/assets/lib/unicons-2.0.1/css/unicons.css' rel='stylesheet'>
+    <link href="~/assets/css/vertical-responsive-menu.min.css" rel="stylesheet">
+    <link href="~/assets/css/style.css" rel="stylesheet">
+    <link href="~/assets/css/responsive.css" rel="stylesheet">
+    <link href="~/assets/css/night-mode.css" rel="stylesheet">
+    <link href="~/assets/css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+
+    <!-- Vendor Stylesheets -->
+    <link href="~/assets/lib/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="~/assets/lib/OwlCarousel/assets/owl.carousel.css" rel="stylesheet">
+    <link href="~/assets/lib/OwlCarousel/assets/owl.theme.default.min.css" rel="stylesheet">
+    <link href="~/assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/lib/bootstrap-select/docs/docs/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/assets/lib/semantic/semantic.min.css">
+</head>
+<body>
+    @await Html.PartialAsync("_Header")
+    @await Html.PartialAsync("_Sidebar");
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+        @await Html.PartialAsync("_Footer");
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+@await RenderSectionAsync("Scripts", required: false)
+</html>
