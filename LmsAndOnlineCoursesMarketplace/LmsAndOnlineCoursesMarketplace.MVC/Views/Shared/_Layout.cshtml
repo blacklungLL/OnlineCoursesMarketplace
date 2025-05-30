@@ -30,8 +30,8 @@
 </head>
 <body>
     @await Html.PartialAsync("_Header")
-    @await Html.PartialAsync("_Sidebar");
     <div class="container">
+        @await Html.PartialAsync("_Sidebar");
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

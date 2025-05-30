@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, shrink-to-fit=9">
 	<meta name="description" content="Gambolthemes">
 	<meta name="author" content="Gambolthemes">
-	<title>Cursus - Index</title>
+	<title>Cursus - Sign Up</title>
 
 	<!-- Favicon Icon -->
 	<link rel="icon" type="image/png" href="~/assets/images/fav.png">
@@ -29,75 +29,49 @@
 	<link rel="stylesheet" type="text/css" href="~/assets/lib/semantic/semantic.min.css">
 </head>
 <body>
+<!-- Signup Start -->
 <div class="sign_in_up_bg">
 	<div class="container">
 		<div class="row justify-content-lg-center justify-content-md-center">
 			<div class="col-lg-12">
 				<div class="main_logo25" id="logo">
-					<a href="index.html"><img src="~/assets/images/logo.svg" alt=""></a>
-					<a href="index.html"><img class="logo-inverse" src="~/assets/images/ct_logo.svg" alt=""></a>
+					<a href="Home"><img src="~/assets/images/logo.svg" alt=""></a>
+					<a href="Home"><img class="logo-inverse" src="~/assets/images/ct_logo.svg" alt=""></a>
 				</div>
 			</div>
 
 			<div class="col-lg-6 col-md-8">
-				<div class="sign_form basic_form">
-					<div class="main-tabs">
-						<ul class="nav nav-tabs" id="myTab" role="tablist">
-							<li class="nav-item">
-								<a href="#instructor-signup-tab" id="instructor-tab" class="nav-link active" data-bs-toggle="tab">Instructor Sign Up</a>
-							</li>
-							<li class="nav-item">
-								<a href="#student-signup-tab" id="student-tab" class="nav-link" data-bs-toggle="tab">Student Sign Up</a>
-							</li>
-						</ul>
-					</div>
-					<div class="tab-content" id="myTabContent">
-						<div class="tab-pane fade show active" id="instructor-signup-tab" role="tabpanel" aria-labelledby="instructor-tab">
-							<p>Sign Up and Create Course!</p>
-							<form>
-								<select class="selectpicker">
-									<option value="">Select Category</option>
-									<option value="1">Development</option>
-									<option value="2">Business</option>
-									<option value="3">Finance & Accounting</option>
-									<option value="4">IT & Software</option>
-									<option value="5">Office Productivity</option>
-									<option value="6">Personal Development</option>
-									<option value="7">Design</option>
-									<option value="8">Marketing</option>
-									<option value="9">Lifestyle</option>
-									<option value="10">Photography</option>
-									<option value="11">Health & Fitness</option>
-									<option value="12">Music</option>
-									<option value="13">Teaching & Academics</option>
-								</select>
-								<div class="ui search focus mt-15">
-									<div class="ui form swdh30">
-										<div class="field">
-											<textarea rows="3" name="description" id="id_about" placeholder="Write a little description about you..."></textarea>
-										</div>
-									</div>
-									<div class="help-block">Your biography should have at least 12000 characters.</div>
-								</div>
-								<button class="login-btn" type="submit">Instructor Sign Up Now</button>
-							</form>
+				<div class="sign_form">
+					<h2>Welcome to Cursus</h2>
+					<p>Sign Up and Start Learning!</p>
+					<form>
+						<div class="ui search focus">
+							<div class="ui left icon input swdh11 swdh19">
+								<input class="prompt srch_explore" type="text" name="fullname" value="" id="id_fullname" required="" maxlength="64" placeholder="Full Name">
+							</div>
 						</div>
-						<div class="tab-pane fade" id="student-signup-tab" role="tabpanel" aria-labelledby="student-tab">
-							<p>Sign Up and Start Learning!</p>
-							<form>
-								<div class="ui search focus mt-15">
-									<div class="ui form swdh30">
-										<div class="field">
-											<textarea rows="3" name="description" id="id_about1" placeholder="Write a little description about you..."></textarea>
-										</div>
-									</div>
-									<div class="help-block">Your biography should have at least 12000 characters.</div>
-								</div>
-								<button class="login-btn" type="submit">Student Sign Up Now</button>
-							</form>
+						<div class="ui search focus mt-15">
+							<div class="ui left icon input swdh11 swdh19">
+								<input class="prompt srch_explore" type="email" name="emailaddress" value="" id="id_email" required="" maxlength="64" placeholder="Email Address">
+							</div>
 						</div>
-					</div>
-					<p class="mb-0 mt-30">Already have an account? <a href="sign_in.html">Log In</a></p>
+						<div class="ui search focus mt-15">
+							<div class="ui left icon input swdh11 swdh19">
+								<input class="prompt srch_explore" type="password" name="password" value="" id="id_password" required="" maxlength="64" placeholder="Password">
+							</div>
+						</div>
+						<div class="ui form mt-30 checkbox_sign">
+							<div class="inline field">
+								<div class="ui checkbox mncheck">
+									<input type="checkbox" tabindex="0" class="hidden">
+									<label>I’m in for emails with exciting discounts and personalized recommendations</label>
+								</div>
+							</div>
+						</div>
+						<button class="login-btn" type="submit">Next</button>
+					</form>
+					<p class="sgntrm145">By signing up, you agree to our <a href="terms_of_use">Terms of Use</a> and <a href="terms_of_use">Privacy Policy</a>.</p>
+					<p class="mb-0 mt-30">Already have an account? <a href="Login">Log In</a></p>
 				</div>
 				<div class="sign_footer"><img src="~/assets/images/sign_logo.png" alt="">© 2024 <strong>Cursus</strong>. All Rights Reserved.</div>
 			</div>

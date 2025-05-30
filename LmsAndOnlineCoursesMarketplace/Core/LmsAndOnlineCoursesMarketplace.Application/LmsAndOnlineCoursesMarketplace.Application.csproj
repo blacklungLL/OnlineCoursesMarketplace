@@ -8,12 +8,15 @@
 
     <ItemGroup>
       <Folder Include="Common\" />
-      <Folder Include="Extensions\" />
-      <Folder Include="Features\" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\LmsAndOnlineCoursesMarketplace.Domain\LmsAndOnlineCoursesMarketplace.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="12.0.1" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.5" />
     </ItemGroup>
 
 </Project>
