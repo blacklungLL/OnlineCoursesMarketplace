@@ -7,7 +7,7 @@ public class Course: BaseAuditableEntity
     public string Title { get; set; }
     public string ShortDescription { get; set; }
     public int UserId { get; set; }
-    public string Link { get; set; }
+    public string ImageLink { get; set; }
     public decimal Rating { get; set; }
     public int RatingsCnt { get; set; }
     public string Language { get; set; }
@@ -18,4 +18,7 @@ public class Course: BaseAuditableEntity
     public int SharedCnt { get; set; }
     public string Requirements { get; set; }
     public string Description { get; set; }
+    public string Duration { get; set; }
+    public string Category { get; set; }
+    public decimal Price { get; set; }
 }
