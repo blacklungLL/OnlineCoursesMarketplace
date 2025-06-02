@@ -97,11 +97,18 @@
 
     <ItemGroup>
       <PackageReference Include="MediatR" Version="12.0.1" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.5">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Core\LmsAndOnlineCoursesMarketplace.Application\LmsAndOnlineCoursesMarketplace.Application.csproj" />
+      <ProjectReference Include="..\Infrastrucutre\LmsAndOnlineCoursesMarketplace.Infrastructure\LmsAndOnlineCoursesMarketplace.Infrastructure.csproj" />
+      <ProjectReference Include="..\Infrastrucutre\LmsAndOnlineCoursesMarketplace.Persistence\LmsAndOnlineCoursesMarketplace.Persistence.csproj" />
     </ItemGroup>
 
 </Project>

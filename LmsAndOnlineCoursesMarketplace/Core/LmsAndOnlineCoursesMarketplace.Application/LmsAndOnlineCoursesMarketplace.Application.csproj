@@ -8,6 +8,8 @@
 
     <ItemGroup>
       <Folder Include="Common\" />
+      <Folder Include="Features\Courses\Commands\" />
+      <Folder Include="Features\Courses\Queries\" />
     </ItemGroup>
 
     <ItemGroup>

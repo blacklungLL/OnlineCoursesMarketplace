@@ -1,4 +1,6 @@
+using LmsAndOnlineCoursesMarketplace.Application.Interfaces.Repositories;
 using LmsAndOnlineCoursesMarketplace.Persistence.Contexts;
+using LmsAndOnlineCoursesMarketplace.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +26,8 @@ public static class IServiceCollectionExtensions
     
     private static void AddRepositories(this IServiceCollection services)
     {
-       
+        services
+            .AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork))
+            .AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
     }
 }

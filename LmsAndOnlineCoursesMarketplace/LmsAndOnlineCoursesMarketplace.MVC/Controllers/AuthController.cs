@@ -32,6 +32,7 @@ public class AuthController : Controller
     {
         var command = new RegisterCommand
         {
+            FullName = model.FullName,
             Email = model.Email,
             Password = model.Password
         };
@@ -65,4 +66,3 @@ public class AuthController : Controller
         return View(model);
     }
 }
-

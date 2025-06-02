@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+@model LmsAndOnlineCoursesMarketplace.MVC.Models.Auth.RegisterViewModel
 @{ Layout = null; }
 <html lang="en">
 <head>
@@ -44,20 +45,20 @@
 				<div class="sign_form">
 					<h2>Welcome to Cursus</h2>
 					<p>Sign Up and Start Learning!</p>
-					<form>
+					<form method="post" asp-controller="Auth" asp-action="Register">
 						<div class="ui search focus">
 							<div class="ui left icon input swdh11 swdh19">
-								<input class="prompt srch_explore" type="text" name="fullname" value="" id="id_fullname" required="" maxlength="64" placeholder="Full Name">
+								<input name="@nameof(Model.FullName)" type="text" required="" maxlength="64" placeholder="Full Name">
 							</div>
 						</div>
 						<div class="ui search focus mt-15">
 							<div class="ui left icon input swdh11 swdh19">
-								<input class="prompt srch_explore" type="email" name="emailaddress" value="" id="id_email" required="" maxlength="64" placeholder="Email Address">
+								<input name="@nameof(Model.Email)" type="email" required="" maxlength="64" placeholder="Email Address">
 							</div>
 						</div>
 						<div class="ui search focus mt-15">
 							<div class="ui left icon input swdh11 swdh19">
-								<input class="prompt srch_explore" type="password" name="password" value="" id="id_password" required="" maxlength="64" placeholder="Password">
+								<input name="@nameof(Model.Password)" type="password" required="" maxlength="64" placeholder="Password">
 							</div>
 						</div>
 						<div class="ui form mt-30 checkbox_sign">
