@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Core\LmsAndOnlineCoursesMarketplace.Application\LmsAndOnlineCoursesMarketplace.Application.csproj" />
+      <ProjectReference Include="..\LmsAndOnlineCoursesMarketplace.Persistence\LmsAndOnlineCoursesMarketplace.Persistence.csproj" />
     </ItemGroup>
 
     <ItemGroup>

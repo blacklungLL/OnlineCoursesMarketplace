@@ -19,6 +19,10 @@ public class GetByCourseIdDto
     /// </summary>
     public int UserId { get; set; }
     
+    /// <summary>
+    /// имя автора
+    /// </summary>
+    public string AuthorName { get; set; }
     
     /// <summary>
     /// Ссылка
