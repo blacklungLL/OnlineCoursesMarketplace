@@ -14,7 +14,7 @@ public class User : BaseAuditableEntity
     public int ReviewsCnt { get; set; }
     public int SubscriptionsCnt { get; set; }
 
-    public string? IdentityUserId { get; set; } // Ссылка на IdentityUser
+    public string? IdentityUserId { get; set; }
     public virtual IdentityUser? IdentityUser { get; set; }
 
     public virtual ICollection<Course> Courses { get; set; }

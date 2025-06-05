@@ -26,7 +26,7 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
             
             var user = await _context.Users
                 .Include(u => u.Courses)
-                .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id); // string == string ✅
+                .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
 
             if (user == null)
                 return NotFound();

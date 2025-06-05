@@ -44,7 +44,7 @@ public class AuthService : IAuthService
             CoursesCnt = 0,
             ReviewsCnt = 0,
             SubscriptionsCnt = 0,
-            IdentityUserId = identityUser.Id // string → всё ок
+            IdentityUserId = identityUser.Id
         };
         
         await _context.Users.AddAsync(user);
