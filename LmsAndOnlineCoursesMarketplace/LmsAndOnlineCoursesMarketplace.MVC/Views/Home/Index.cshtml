@@ -470,26 +470,29 @@
 								<div class="tutor_img">
 									<a href="Profile"><img src="~/assets/images/left-imgs/img-10.jpg" alt=""></a>
 								</div>
-								<div class="tutor_content_dt">
-									<div class="tutor150">
-										<a href="Profile" class="tutor_name">Joginder Singh</a>
-										<div class="mef78" title="Verify">
-											<i class="uil uil-check-circle"></i>
+								@if (ViewBag.UserName != null)
+								{
+									<div class="tutor_content_dt">
+										<div class="tutor150">
+											<a href="Profile" class="tutor_name">@ViewBag.UserName</a>
+											<div class="mef78" title="Verify">
+												<i class="uil uil-check-circle"></i>
+											</div>
 										</div>
+										<div class="tutor_cate">@ViewBag.JobPosition</div>
+										<ul class="tutor_social_links">
+											<li><a href="#" class="fb"><i class="fab fa-facebook-f"></i></a></li>
+											<li><a href="#" class="tw"><i class="fab fa-twitter"></i></a></li>
+											<li><a href="#" class="ln"><i class="fab fa-linkedin-in"></i></a></li>
+											<li><a href="#" class="yu"><i class="fab fa-youtube"></i></a></li>
+										</ul>
+										<div class="tut1250">
+											<span class="vdt15">@ViewBag.EnrollStudents Students</span>
+											<span class="vdt15">@ViewBag.CoursesCnt Courses</span>
+										</div>
+										<a href="Profile" class="prfle12link">Go To Profile</a>
 									</div>
-									<div class="tutor_cate">Web Developer, Designer, and Teacher</div>
-									<ul class="tutor_social_links">
-										<li><a href="#" class="fb"><i class="fab fa-facebook-f"></i></a></li>
-										<li><a href="#" class="tw"><i class="fab fa-twitter"></i></a></li>
-										<li><a href="#" class="ln"><i class="fab fa-linkedin-in"></i></a></li>
-										<li><a href="#" class="yu"><i class="fab fa-youtube"></i></a></li>
-									</ul>
-									<div class="tut1250">
-										<span class="vdt15">615K Students</span>
-										<span class="vdt15">12 Courses</span>
-									</div>
-									<a href="Profile" class="prfle12link">Go To Profile</a>
-								</div>
+								}
 							</div>
 							<div class="fcrse_3">
 								<div class="cater_ttle">

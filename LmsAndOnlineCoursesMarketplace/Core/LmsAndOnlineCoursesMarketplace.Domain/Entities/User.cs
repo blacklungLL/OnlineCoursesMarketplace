@@ -9,6 +9,7 @@ public class User : BaseAuditableEntity
     public string Email { get; set; }
 
     public string JobPosition { get; set; }
+    public string Description { get; set; }
     public int EnrollStudents { get; set; }
     public int CoursesCnt { get; set; }
     public int ReviewsCnt { get; set; }

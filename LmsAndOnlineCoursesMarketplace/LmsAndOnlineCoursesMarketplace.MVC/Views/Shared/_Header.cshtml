@@ -101,37 +101,40 @@
 				<a href="#" class="opts_account" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
 					<img src="~/assets/images/hd_dp.jpg" alt="">
 				</a>
-				<div class="dropdown-menu dropdown_account drop-down dropdown-menu-end">
-					<div class="channel_my">
-						<div class="profile_link">
-							<img src="~/assets/images/hd_dp.jpg" alt="">
-							<div class="pd_content">
-								<div class="rhte85">
-									<h6>Joginder Singh</h6>
-									<div class="mef78" title="Verify">
-										<i class='uil uil-check-circle'></i>
+				@if (ViewBag.UserName != null)
+				{
+					<div class="dropdown-menu dropdown_account drop-down dropdown-menu-end">
+						<div class="channel_my">
+							<div class="profile_link">
+								<img src="~/assets/images/hd_dp.jpg" alt="">
+								<div class="pd_content">
+									<div class="rhte85">
+										<h6>@ViewBag.UserName</h6>
+										<div class="mef78" title="Verify">
+											<i class='uil uil-check-circle'></i>
+										</div>
 									</div>
-								</div>
-								<span>gambol943@gmail.com</span>
-							</div>							
+									<span>@ViewBag.UserEmail</span>
+								</div>							
+							</div>
+							<a href="Profile" class="dp_link_12">View Instructor Profile</a>						
 						</div>
-						<a href="Profile" class="dp_link_12">View Instructor Profile</a>						
+						<div class="night_mode_switch__btn">
+							<a href="#" id="night-mode" class="btn-night-mode">
+								<i class="uil uil-moon"></i> Night mode
+								<span class="btn-night-mode-switch">
+									<span class="uk-switch-button"></span>
+								</span>
+							</a>
+						</div>
+						<a href="instructor_dashboard" class="item channel_item">Cursus dashboard</a>						
+						<a href="membership" class="item channel_item">Paid Memberships</a>
+						<a href="settings" class="item channel_item">Setting</a>
+						<a href="help" class="item channel_item">Help</a>
+						<a href="feedback" class="item channel_item">Send Feedback</a>
+						<a href="Login" class="item channel_item">Sign Out</a>
 					</div>
-					<div class="night_mode_switch__btn">
-						<a href="#" id="night-mode" class="btn-night-mode">
-							<i class="uil uil-moon"></i> Night mode
-							<span class="btn-night-mode-switch">
-								<span class="uk-switch-button"></span>
-							</span>
-						</a>
-					</div>
-					<a href="instructor_dashboard" class="item channel_item">Cursus dashboard</a>						
-					<a href="membership" class="item channel_item">Paid Memberships</a>
-					<a href="settings" class="item channel_item">Setting</a>
-					<a href="help" class="item channel_item">Help</a>
-					<a href="feedback" class="item channel_item">Send Feedback</a>
-					<a href="Login" class="item channel_item">Sign Out</a>
-				</div>
+				}
 			</li>
 		</ul>
 	</div>

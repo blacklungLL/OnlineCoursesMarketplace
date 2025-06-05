@@ -1,3 +1,4 @@
+using LmsAndOnlineCoursesMarketplace.MVC.Models.Course;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LmsAndOnlineCoursesMarketplace.Persistence.Contexts;
@@ -38,8 +39,21 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
                 JobPosition = user.JobPosition,
                 CoursesCnt = user.CoursesCnt,
                 EnrollStudents = user.EnrollStudents,
+                Description = user.Description,
                 ReviewsCnt = user.ReviewsCnt,
-                SubscriptionsCnt = user.SubscriptionsCnt
+                SubscriptionsCnt = user.SubscriptionsCnt,
+                CreatedCourses = user.Courses?
+                    .Select(c => new CourseVM
+                    {
+                        Id = c.Id,
+                        Title = c.Title,
+                        ImageLink = c.ImageLink,
+                        Price = c.Price,
+                        Category = c.Category,
+                        Language = c.Language,
+                        UserId = c.UserId
+                    })
+                    .ToList() ?? new List<CourseVM>()
             };
             
             return View(model);

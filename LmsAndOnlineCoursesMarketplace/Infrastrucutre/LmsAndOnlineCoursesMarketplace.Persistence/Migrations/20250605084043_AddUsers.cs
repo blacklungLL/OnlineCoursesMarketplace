@@ -69,11 +69,6 @@ namespace LmsAndOnlineCoursesMarketplace.Persistence.Migrations
                     principalTable: "Users",
                     principalColumn: "Id",
                     onDelete: ReferentialAction.Cascade);
-
-                // migrationBuilder.CreateIndex(
-                //     name: "IX_Courses_UserId",
-                //     table: "Courses",
-                //     column: "UserId");
         }
 
         /// <inheritdoc />

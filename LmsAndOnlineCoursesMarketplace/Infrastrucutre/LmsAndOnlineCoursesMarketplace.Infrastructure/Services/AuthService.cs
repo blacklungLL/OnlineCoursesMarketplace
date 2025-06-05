@@ -40,6 +40,7 @@ public class AuthService : IAuthService
             Name = fullName,
             Email = email,
             JobPosition = "Не указано",
+            Description = "Не указано",
             EnrollStudents = 0,
             CoursesCnt = 0,
             ReviewsCnt = 0,

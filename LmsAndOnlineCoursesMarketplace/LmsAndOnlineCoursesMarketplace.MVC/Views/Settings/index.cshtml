@@ -1,9 +1,15 @@
+@model LmsAndOnlineCoursesMarketplace.MVC.Models.Profile.EditProfileVM
+
+@{
+	ViewData["Title"] = "Profile settings";
+}
+
 <div class="wrapper">
 		<div class="sa4d25">
 			<div class="container-fluid">			
 				<div class="row">
 					<div class="col-lg-12">
-						<h2 class="st_title"><i class='uil uil-cog'></i> Setting</h2>
+						<h2 class="st_title"><i class='uil uil-cog'></i> Settings</h2>
 						<div class="setting_tabs">
 							<ul class="nav nav-pills mb-4" id="pills-tab" role="tablist">
 								<li class="nav-item">
@@ -36,50 +42,43 @@
 											<h4>Basic Profile</h4>
 											<p>Add information about yourself</p>
 										</div>
-										<div class="basic_form">
+										<form asp-controller="Settings" asp-action="Index" method="post" class="basic_form">
 											<div class="row">
-												<div class="col-lg-8">
-													<div class="row">
-														<div class="col-lg-6">
-															<div class="ui search focus mt-30">
-																<div class="ui left icon input swdh11 swdh19">
-																	<input class="prompt srch_explore" type="text" name="name" value="Joginder" id="id[name]" required="" maxlength="64" placeholder="First Name">															
-																</div>
-															</div>
-														</div>
-														<div class="col-lg-6">
-															<div class="ui search focus mt-30">
-																<div class="ui left icon input swdh11 swdh19">
-																	<input class="prompt srch_explore" type="text" name="surname" value="Singh" id="id[surname]" required="" maxlength="64" placeholder="Last Name">															
-																</div>
-															</div>
-														</div>
-														<div class="col-lg-12">
-															<div class="ui search focus mt-30">
-																<div class="ui left icon input swdh11 swdh19">
-																	<input class="prompt srch_explore" type="text" name="headline" value="I  am a Web Designer" id="id_headline" required="" maxlength="60" placeholder="Headline">															
-																	<div class="form-control-counter" data-purpose="form-control-counter">36</div>
-																</div>
-																<div class="help-block">Add a professional headline like, "Engineer at Cursus" or "Architect."</div>
-															</div>
-														</div>
-														<div class="col-lg-12">
-															<div class="ui search focus mt-30">																
-																<div class="ui form swdh30">
-																	<div class="field">
-																		<textarea rows="3" name="description" id="id_about" placeholder="Write a little description about you..."></textarea>
-																	</div>
-																</div>
-																<div class="help-block">Links and coupon codes are not permitted in this section.</div>
-															</div>
-														</div>
-														<div class="col-lg-12">
-															<div class="divider-1"></div>
+												<div class="col-lg-12">
+													<div class="ui search focus mt-30">
+														<div class="ui left icon input swdh11 swdh19">
+															<input asp-for="Name" class="prompt srch_explore" type="text" maxlength="64" placeholder="Full Name">
+															<span asp-validation-for="Name" class="text-danger"></span>
 														</div>
 													</div>
 												</div>
+												<div class="col-lg-12">
+													<div class="ui search focus mt-30">
+														<div class="ui left icon input swdh11 swdh19">
+															<input asp-for="JobPosition" class="prompt srch_explore" type="text" maxlength="60" placeholder="Headline">
+															<span asp-validation-for="JobPosition" class="text-danger"></span>
+															<div class="form-control-counter" data-purpose="form-control-counter">36</div>
+														</div>
+														<div class="help-block">Add a professional headline like, "Engineer at Cursus" or "Architect."</div>
+													</div>
+												</div>
+												<div class="col-lg-12">
+													<div class="ui search focus mt-30">
+														<div class="ui form swdh30">
+															<div class="field">
+																<textarea asp-for="Description" rows="3" name="description" id="id_about" placeholder="Write a little description about you..."></textarea>
+																<span asp-validation-for="Description" class="text-danger"></span>
+															</div>
+														</div>
+														<div class="help-block">Links and coupon codes are not permitted in this section.</div>
+													</div>
+												</div>
+												<div class="col-lg-12">
+													<div class="divider-1"></div>
+													<button type="submit" class="save_btn">Save Changes</button>
+												</div>
 											</div>
-										</div>
+										</form>
 									</div>
 									<div class="basic_profile1">
 										<div class="basic_ptitle">
