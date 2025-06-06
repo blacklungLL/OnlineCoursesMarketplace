@@ -24,7 +24,7 @@
 				<a href="create_new_course" class="upload_btn" title="Create New Course">Create New Course</a>
 			</li>
 			<li>
-				<a href="shopping_cart" class="option_links" title="cart"><i class='uil uil-shopping-cart-alt'></i><span class="noti_count">2</span></a>
+				<a asp-controller="ShoppingCart" asp-action="Index" class="option_links" title="cart"><i class='uil uil-shopping-cart-alt'></i><span class="noti_count">2</span></a>
 			</li>
 			<li class="dropdown-msg">
 				<a href="#" class="option_links" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false"><i class='uil uil-envelope-alt'></i><span class="noti_count">3</span></a>
@@ -101,8 +101,6 @@
 				<a href="#" class="opts_account" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
 					<img src="~/assets/images/hd_dp.jpg" alt="">
 				</a>
-				@if (ViewBag.UserName != null)
-				{
 					<div class="dropdown-menu dropdown_account drop-down dropdown-menu-end">
 						<div class="channel_my">
 							<div class="profile_link">
@@ -117,7 +115,7 @@
 									<span>@ViewBag.UserEmail</span>
 								</div>							
 							</div>
-							<a href="Profile" class="dp_link_12">View Instructor Profile</a>						
+							<a asp-controller="Profile" asp-action="Index" class="dp_link_12">View Instructor Profile</a>						
 						</div>
 						<div class="night_mode_switch__btn">
 							<a href="#" id="night-mode" class="btn-night-mode">
@@ -134,7 +132,6 @@
 						<a href="feedback" class="item channel_item">Send Feedback</a>
 						<a href="Login" class="item channel_item">Sign Out</a>
 					</div>
-				}
 			</li>
 		</ul>
 	</div>

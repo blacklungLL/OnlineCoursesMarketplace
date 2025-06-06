@@ -18,7 +18,6 @@
     <link href="~/assets/css/style.css" rel="stylesheet">
     <link href="~/assets/css/responsive.css" rel="stylesheet">
     <link href="~/assets/css/night-mode.css" rel="stylesheet">
-    <link href="~/assets/css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
 
     <!-- Vendor Stylesheets -->
     <link href="~/assets/lib/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -27,19 +26,20 @@
     <link href="~/assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/assets/lib/bootstrap-select/docs/docs/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="~/assets/lib/semantic/semantic.min.css">
+
 </head>
 <body>
-    @await Html.PartialAsync("_Header")
-    <div class="container">
-        @await Html.PartialAsync("_Sidebar");
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-        @await Html.PartialAsync("_Footer");
-    </div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+@await Html.PartialAsync("_Header")
+<div class="container">
+    @await Html.PartialAsync("_Sidebar");
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+    @await Html.PartialAsync("_Footer");
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 @await RenderSectionAsync("Scripts", required: false)
 </html>

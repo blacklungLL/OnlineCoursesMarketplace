@@ -9,7 +9,7 @@
                     </a>
                 </li>
                 <li class="menu--item">
-                    <a href="LiveStreams" class="menu--link" title="Live Streams">
+                    <a a asp-controller="LiveStreams" asp-action="Index" class="menu--link" title="Live Streams">
                         <i class='uil uil-kayak menu--icon'></i>
                         <span class="menu--label">Live Streams</span>
                     </a>
@@ -106,19 +106,16 @@
                             <a href="about_us" class="sub_menu--link">About</a>
                         </li>
                         <li class="sub_menu--item">
-                            <a href="Login" class="sub_menu--link">Sign In</a>
+                            <a asp-controller="Login" asp-action="Index" class="sub_menu--link">Sign In</a>
                         </li>
                         <li class="sub_menu--item">
-                            <a href="Registration" class="sub_menu--link">Sign Up</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="SignUp" class="sub_menu--link">Sign Up Steps</a>
+                            <a asp-controller="Registration" asp-action="Index" class="sub_menu--link">Sign Up</a>
                         </li>
                         <li class="sub_menu--item">
                             <a href="membership" class="sub_menu--link">Paid Membership</a>
                         </li>
                         <li class="sub_menu--item">
-                            <a href="Course" class="sub_menu--link">Course Detail View</a>
+                            <a asp-controller="Course" asp-action="Index" class="sub_menu--link">Course Detail View</a>
                         </li>
                         <li class="sub_menu--item">
                             <a href="checkout_membership" class="sub_menu--link">Checkout</a>
@@ -145,7 +142,7 @@
                             <a href="press" class="sub_menu--link">Press</a>
                         </li>
                         <li class="sub_menu--item">
-                            <a href="LiveStream" class="sub_menu--link">Live Stream View</a>
+                            <a asp-controller="LiveStream" asp-action="Index" class="sub_menu--link">Live Stream View</a>
                         </li>
                         <li class="sub_menu--item">
                             <a href="add_streaming" class="sub_menu--link">Add live Stream</a>
@@ -194,7 +191,7 @@
         <div class="left_section pt-2">
             <ul>
                 <li class="menu--item">
-                    <a href="settings" class="menu--link" title="Setting">
+                    <a asp-controller="Settings" asp-action="Index" class="menu--link" title="Setting">
                         <i class='uil uil-cog menu--icon'></i>
                         <span class="menu--label">Settings</span>
                     </a>

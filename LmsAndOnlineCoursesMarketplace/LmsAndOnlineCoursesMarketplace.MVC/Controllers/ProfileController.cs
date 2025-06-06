@@ -56,6 +56,21 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
                     .ToList() ?? new List<CourseVM>()
             };
             
+            if (identityUser != null)
+            {
+                var userForViewBag = await _context.Users
+                    .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
+
+                if (userForViewBag != null)
+                {
+                    ViewBag.UserName = user.Name;
+                    ViewBag.JobPosition = user.JobPosition;
+                    ViewBag.EnrollStudents = user.EnrollStudents;
+                    ViewBag.CoursesCnt = user.CoursesCnt;
+                    ViewBag.UserEmail = user.Email;
+                }
+            }
+            
             return View(model);
         }
     }

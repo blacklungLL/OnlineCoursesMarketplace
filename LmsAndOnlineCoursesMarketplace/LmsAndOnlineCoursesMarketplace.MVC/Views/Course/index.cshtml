@@ -1,5 +1,8 @@
 @model LmsAndOnlineCoursesMarketplace.MVC.Models.Course.CourseVM
 
+@{
+    ViewData["Title"] = "Course";
+}
 <div class="wrapper _bg4586">
     <div class="_215b01">
         <div class="container-fluid">
@@ -62,7 +65,7 @@
                                 </div>
                                 <ul class="_215b31">
                                     <li><button class="btn_adcart">Add to Cart</button></li>
-                                    <li><button class="btn_buy">Buy Now</button></li>
+                                    <li><a class="btn_buy" asp-controller="Profile" asp-action="Index">Buy Now</a></li>
                                 </ul>
                                 <div class="_215fgt1">
                                     30-Day Money-Back Guarantee
@@ -193,11 +196,11 @@
     </div>
 <!-- Body End -->
 
-<script src="~/assets/js/vertical-responsive-menu.min.~/assets/js"></script>
-<script src="~/assets/js/jquery-3.7.1.min.~/assets/js"></script>
-<script src="~/assets/lib/bootstrap/~/assets/js/bootstrap.bundle.min.~/assets/js"></script>
-<script src="~/assets/lib/OwlCarousel/owl.carousel.~/assets/js"></script>
-<script src="~/assets/lib/bootstrap-select/docs/docs/dist/~/assets/js/bootstrap-select.~/assets/js"></script>
-<script src="~/assets/lib/semantic/semantic.min.~/assets/js"></script>
-<script src="~/assets/js/custom.~/assets/js"></script>
-<script src="~/assets/js/night-mode.~/assets/js"></script>
+<script src="~/assets/js/vertical-responsive-menu.min.js"></script>
+<script src="~/assets/js/jquery-3.7.1.min.js"></script>
+<script src="~/assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/assets/lib/OwlCarousel/owl.carousel.js"></script>
+<script src="~/assets/lib/bootstrap-select/docs/docs/dist/js/bootstrap-select.js"></script>
+<script src="~/assets/lib/semantic/semantic.min.js"></script>
+<script src="~/assets/js/custom.js"></script>
+<script src="~/assets/js/night-mode.js"></script>	
