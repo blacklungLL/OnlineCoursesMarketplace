@@ -171,155 +171,59 @@
 										<div class="_htg452">
 											<h3>Purchased Courses</h3>
 											<div class="row">
-												<div class="col-md-9">
-													<div class="fcrse_1 mt-20">
-														<a href="course_detail_view" class="hf_img">
-															<img src="~/assets/images/courses/img-1.jpg" alt="">
-															<div class="course-overlay">
-																<div class="badge_seller">Bestseller</div>
-																<div class="crse_reviews">
-																	<i class="uil uil-star"></i>4.5
+												@if (Model.PurchasedCourses != null && Model.PurchasedCourses.Any())
+												{
+													foreach (var course in Model.PurchasedCourses)
+													{
+														<div class="col-md-9 col-lg-3">
+															<div class="fcrse_1 mt-30">
+																<a asp-controller="Course" asp-action="Index" asp-route-id="@course.Id" class="hf_img">
+																	<img src="@course.ImageLink" alt="@course.Title">
+																	<div class="course-overlay">
+																		<div class="badge_seller">Bestseller</div>
+																		<div class="crse_reviews">
+																			<i class="uil uil-star"></i>@course.Rating
+																		</div>
+																		<span class="play_btn1"><i class="uil uil-play"></i></span>
+																		<div class="crse_timer">@course.Duration</div>
+																	</div>
+																</a>
+																<div class="hs_content">
+																	<div class="eps_dots eps_dots10 more_dropdown">
+																		<a href="#"><i class="uil uil-ellipsis-v"></i></a>
+																		<div class="dropdown-content">
+																			<span><i class="uil uil-download-alt"></i>Download</span>
+																			<span><i class="uil uil-trash-alt"></i>Delete</span>
+																		</div>
+																	</div>
+																	<div class="vdtodt">
+																		<span class="vdt14">@course.Views views</span>
+																		<span class="vdt14">15 days ago</span>
+																	</div>
+																	<a asp-controller="Course" asp-action="Details" asp-route-id="@course.Id" class="crse14s title900">@course.Title</a>
+																	<a href="#" class="crse-cate">@course.Category | @course.Language</a>
+																	<div class="purchased_badge">Purchased</div>
+																	<div class="auth1lnkprce">
+																		<p class="cr1fot">By <a href="#">@course.AuthorName</a></p>
+																		<div class="prce142">@course.Price.ToString("C")</div>
+																		<button class="shrt-cart-btn" title="cart">
+																			<i class="uil uil-shopping-cart-alt"></i>
+																		</button>
+																	</div>
 																</div>
-																<span class="play_btn1"><i class="uil uil-play"></i></span>
-																<div class="crse_timer">
-																	25 hours
-																</div>
-															</div>
-														</a>
-														<div class="hs_content">
-															<div class="eps_dots eps_dots10 more_dropdown">
-																<a href="#"><i class="uil uil-ellipsis-v"></i></a>
-																<div class="dropdown-content">
-																	<span><i class="uil uil-download-alt"></i>Download</span>															
-																	<span><i class="uil uil-trash-alt"></i>Delete</span>															
-																</div>																											
-															</div>
-															<div class="vdtodt">
-																<span class="vdt14">109k views</span>
-																<span class="vdt14">15 days ago</span>
-															</div>
-															<a href="course_detail_view" class="crse14s title900">Complete Python Bootcamp: Go from zero to hero in Python 3</a>
-															<a href="#" class="crse-cate">Web Development | Python</a>
-															<div class="purchased_badge">Purchased</div>
-															<div class="auth1lnkprce">
-																<p class="cr1fot">By <a href="#">John Doe</a></p>
-																<div class="prce142">$10</div>
-																<button class="shrt-cart-btn" title="cart"><i class="uil uil-shopping-cart-alt"></i></button>
 															</div>
 														</div>
+													}
+												}
+												else
+												{
+													<div class="col-md-12">
+														<p>У вас пока нет купленных курсов.</p>
 													</div>
-													<div class="fcrse_1 mt-30">
-														<a href="course_detail_view" class="hf_img">
-															<img src="~/assets/images/courses/img-2.jpg" alt="">
-															<div class="course-overlay">
-																<div class="badge_seller">Bestseller</div>
-																<div class="crse_reviews">
-																	<i class="uil uil-star"></i>4.5
-																</div>
-																<span class="play_btn1"><i class="uil uil-play"></i></span>
-																<div class="crse_timer">
-																	28 hours
-																</div>
-															</div>
-														</a>
-														<div class="hs_content">
-															<div class="eps_dots eps_dots10 more_dropdown">
-																<a href="#"><i class="uil uil-ellipsis-v"></i></a>
-																<div class="dropdown-content">
-																	<span><i class="uil uil-download-alt"></i>Download</span>															
-																	<span><i class="uil uil-trash-alt"></i>Delete</span>															
-																</div>																											
-															</div>
-															<div class="vdtodt">
-																<span class="vdt14">5M views</span>
-																<span class="vdt14">15 days ago</span>
-															</div>
-															<a href="course_detail_view" class="crse14s title900">The Complete JavaScript Course 2020: Build Real Projects!</a>
-															<a href="#" class="crse-cate">Development | JavaScript</a>
-															<div class="purchased_badge">Purchased</div>
-															<div class="auth1lnkprce">
-																<p class="cr1fot">By <a href="#">Jassica William</a></p>
-																<div class="prce142">$5</div>
-																<button class="shrt-cart-btn" title="cart"><i class="uil uil-shopping-cart-alt"></i></button>
-															</div>
-														</div>
-													</div>
-													<div class="fcrse_1 mt-30">
-														<a href="course_detail_view" class="hf_img">
-															<img src="~/assets/images/courses/img-3.jpg" alt="">
-															<div class="course-overlay">
-																<div class="badge_seller">Bestseller</div>
-																<div class="crse_reviews">
-																	<i class="uil uil-star"></i>4.5
-																</div>
-																<span class="play_btn1"><i class="uil uil-play"></i></span>
-																<div class="crse_timer">
-																	12 hours
-																</div>
-															</div>
-														</a>
-														<div class="hs_content">
-															<div class="eps_dots eps_dots10 more_dropdown">
-																<a href="#"><i class="uil uil-ellipsis-v"></i></a>
-																<div class="dropdown-content">
-																	<span><i class="uil uil-download-alt"></i>Download</span>															
-																	<span><i class="uil uil-trash-alt"></i>Delete</span>															
-																</div>																											
-															</div>
-															<div class="vdtodt">
-																<span class="vdt14">1M views</span>
-																<span class="vdt14">18 days ago</span>
-															</div>
-															<a href="course_detail_view" class="crse14s title900">Beginning C++ Programming - From Beginner to Beyond</a>
-															<a href="#" class="crse-cate">Development | C++</a>
-															<div class="purchased_badge">Purchased</div>
-															<div class="auth1lnkprce">
-																<p class="cr1fot">By <a href="#">Joginder Singh</a></p>
-																<div class="prce142">$13</div>
-																<button class="shrt-cart-btn" title="cart"><i class="uil uil-shopping-cart-alt"></i></button>
-															</div>
-														</div>
-													</div>
-													<div class="fcrse_1 mt-30">
-														<a href="course_detail_view" class="hf_img">
-															<img src="~/assets/images/courses/img-4.jpg" alt="">
-															<div class="course-overlay">
-																<div class="badge_seller">Bestseller</div>
-																<div class="crse_reviews">
-																	<i class="uil uil-star"></i>5.0
-																</div>
-																<span class="play_btn1"><i class="uil uil-play"></i></span>
-																<div class="crse_timer">
-																	1 hours
-																</div>
-															</div>
-														</a>
-														<div class="hs_content">
-															<div class="eps_dots eps_dots10 more_dropdown">
-																<a href="#"><i class="uil uil-ellipsis-v"></i></a>
-																<div class="dropdown-content">
-																	<span><i class="uil uil-download-alt"></i>Download</span>															
-																	<span><i class="uil uil-trash-alt"></i>Delete</span>															
-																</div>																											
-															</div>
-															<div class="vdtodt">
-																<span class="vdt14">153k views</span>
-																<span class="vdt14">3 months ago</span>
-															</div>
-															<a href="course_detail_view" class="crse14s title900">The Complete Digital Marketing Course - 12 Courses in 1</a>
-															<a href="#" class="crse-cate">Digital Marketing | Marketing</a>
-															<div class="purchased_badge">Purchased</div>
-															<div class="auth1lnkprce">
-																<p class="cr1fot">By <a href="#">Poonam Verma</a></p>
-																<div class="prce142">$12</div>
-																<button class="shrt-cart-btn" title="cart"><i class="uil uil-shopping-cart-alt"></i></button>
-															</div>
-														</div>
-													</div>
-												</div>									
+												}
 											</div>
-										</div>																	
-									</div>							
+										</div>
+									</div>
 								</div>
 								<div class="tab-pane fade" id="nav-reviews" role="tabpanel">
 									<div class="student_reviews">

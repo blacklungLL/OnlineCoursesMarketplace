@@ -3,6 +3,7 @@ using System;
 using LmsAndOnlineCoursesMarketplace.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LmsAndOnlineCoursesMarketplace.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250606141311_AddBalanceToUsers")]
+    partial class AddBalanceToUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,21 +170,6 @@ namespace LmsAndOnlineCoursesMarketplace.Persistence.Migrations
                     b.HasIndex("IdentityUserId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("LmsAndOnlineCoursesMarketplace.Domain.Entities.UserCoursePurchase", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("UserId", "CourseId");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("UserCoursePurchases");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -400,25 +388,6 @@ namespace LmsAndOnlineCoursesMarketplace.Persistence.Migrations
                     b.Navigation("IdentityUser");
                 });
 
-            modelBuilder.Entity("LmsAndOnlineCoursesMarketplace.Domain.Entities.UserCoursePurchase", b =>
-                {
-                    b.HasOne("LmsAndOnlineCoursesMarketplace.Domain.Entities.Course", "Course")
-                        .WithMany("UserCoursePurchases")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LmsAndOnlineCoursesMarketplace.Domain.Entities.User", "User")
-                        .WithMany("PurchasedCourses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -470,16 +439,9 @@ namespace LmsAndOnlineCoursesMarketplace.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("LmsAndOnlineCoursesMarketplace.Domain.Entities.Course", b =>
-                {
-                    b.Navigation("UserCoursePurchases");
-                });
-
             modelBuilder.Entity("LmsAndOnlineCoursesMarketplace.Domain.Entities.User", b =>
                 {
                     b.Navigation("Courses");
-
-                    b.Navigation("PurchasedCourses");
                 });
 #pragma warning restore 612, 618
         }

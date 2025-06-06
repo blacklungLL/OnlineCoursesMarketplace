@@ -22,4 +22,6 @@ public class Course: BaseAuditableEntity
     public string Duration { get; set; }
     public string Category { get; set; }
     public decimal Price { get; set; }
+    
+    public virtual ICollection<UserCoursePurchase> UserCoursePurchases { get; set; }
 }

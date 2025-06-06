@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using LmsAndOnlineCoursesMarketplace.Persistence.Contexts;
 using Microsoft.AspNetCore.Identity;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.Profile;
+using LmsAndOnlineCoursesMarketplace.MVC.Models.ShoppingCart;
 
 namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
 {
@@ -31,7 +32,7 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
 
             if (user == null)
                 return NotFound();
-            
+
             var model = new ProfileVM
             {
                 Name = user.Name,
@@ -55,6 +56,26 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
                     })
                     .ToList() ?? new List<CourseVM>()
             };
+            
+            var purchased = await _context.UserCoursePurchases
+                .Include(up => up.Course)
+                .ThenInclude(c => c.User) // связь с автором курса
+                .Where(up => up.UserId == user.Id)
+                .Select(up => up.Course)
+                .ToListAsync();
+
+            model.PurchasedCourses = purchased.Select(c => new CourseSummaryVM
+            {
+                Id = c.Id,
+                Title = c.Title,
+                ImageLink = c.ImageLink,
+                Category = c.Category,
+                Language = c.Language,
+                Duration = c.Duration,
+                Views = c.Views,
+                Price = c.Price,
+                AuthorName = c.User?.Name ?? "Unknown"
+            }).ToList();
             
             if (identityUser != null)
             {

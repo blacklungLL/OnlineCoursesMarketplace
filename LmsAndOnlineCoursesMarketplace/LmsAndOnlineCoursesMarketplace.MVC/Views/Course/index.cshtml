@@ -65,7 +65,14 @@
                                 </div>
                                 <ul class="_215b31">
                                     <li><button class="btn_adcart">Add to Cart</button></li>
-                                    <li><a class="btn_buy" asp-controller="Profile" asp-action="Index">Buy Now</a></li>
+                                    <li>
+                                        <a class="btn_buy"
+                                           asp-controller="ShoppingCart"
+                                           asp-action="Index"
+                                           asp-route-courseId="@Model.Id">
+                                            Buy Now
+                                        </a>
+                                    </li>
                                 </ul>
                                 <div class="_215fgt1">
                                     30-Day Money-Back Guarantee
