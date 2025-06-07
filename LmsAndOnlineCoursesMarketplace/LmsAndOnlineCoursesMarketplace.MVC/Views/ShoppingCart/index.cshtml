@@ -75,15 +75,15 @@
 											<img src="~/assets/images/hd_dp.jpg" alt="">
 											<div class="pd_content">
 												<div class="rhte85">
-													<h6>Joginder Singh</h6>
+													<h6>@ViewBag.UserName</h6>
 													<div class="mef78" title="Verify">
 														<i class='uil uil-check-circle'></i>
 													</div>
 												</div>
-												<span>gambol943@gmail.com</span>
+												<span>@ViewBag.UserEmail</span>
 											</div>							
 										</div>
-										<a href="Profile" class="dp_link_12">View Instructor Profile</a>
+										<a href="Profile" class="dp_link_12">View Profile</a>
 									</div>
 									<div class="night_mode_switch__btn">
 										<a href="#" id="night-mode" class="btn-night-mode">
@@ -131,25 +131,24 @@
 		<div class="mb4d25">
 			<div class="container">
 				<div class="row">
-					<!-- Левая часть: курсы -->
 					<div class="col-lg-8">
 						@if (Model.Courses != null && Model.Courses.Any())
 						{
 							foreach (var course in Model.Courses)
 							{
 								<div class="fcrse_1">
-									<a asp-controller="Course" asp-action="Details" asp-route-id="@course.Id" class="hf_img">
+									<a asp-controller="Course" asp-action="Index" asp-route-id="@course.Id" class="hf_img">
 										<img class="cart_img" src="@course.ImageLink" alt="@course.Title">
 									</a>
 									<div class="hs_content">
 										<div class="eps_dots eps_dots10 more_dropdown">
 											<a href="#"><i class="uil uil-times"></i></a>
 										</div>
-										<a asp-controller="Course" asp-action="Details" asp-route-id="@course.Id" class="crse14s title900 pt-2">@course.Title</a>
+										<a asp-controller="Course" asp-action="Index" asp-route-id="@course.Id" class="crse14s title900 pt-2">@course.Title</a>
 										<a href="#" class="crse-cate">@course.Category | @course.Language</a>
 										<div class="auth1lnkprce">
 											<p class="cr1fot">By <a href="#">@course.AuthorName</a></p>
-											<div class="prce142">@course.Price.ToString("C")</div>
+											<div class="prce142">$@course.Price</div>
 										</div>
 									</div>
 								</div>
@@ -157,39 +156,35 @@
 						}
 						else
 						{
-							<p>Ваша корзина пуста.</p>
+							<p>Your cart is empty</p>
 						}
 					</div>
-
-					<!-- Правая часть: сумма и кнопка покупки -->
 					<div class="col-lg-4">
 						<div class="membership_chk_bg rght1528">
 							<div class="checkout_title">
-								<h4>Итого</h4>
+								<h4>Total</h4>
 								<img src="~/assets/images/line.svg" alt="">
 							</div>
 							<div class="order_dt_section">
 								<div class="order_title">
-									<h4>Цена</h4>
-									<div class="order_price">@Model.TotalPrice.ToString("C")</div>
+									<h4>Original Price</h4>
+									<div class="order_price">$@Model.TotalPrice</div>
 								</div>
 								<div class="order_title">
-									<h6>Скидка</h6>
+									<h6>Discount Price</h6>
 									<div class="order_price">$5</div>
 								</div>
 								<div class="order_title">
-									<h2>Общая сумма</h2>
-									<div class="order_price5">@Model.TotalPrice.ToString("C")</div>
+									<h2>Total Price</h2>
+									<div class="order_price5">$@Model.TotalPrice</div>
 								</div>
-
-								<!-- Кнопка "Checkout Now" -->
 								<form asp-controller="ShoppingCart" asp-action="BuyNow" method="post">
 									@foreach (var course in Model.Courses)
 									{
 										<input type="hidden" name="courseId" value="@course.Id" />
 									}
 
-									<button type="submit" class="chck-btn22">Оплатить</button>
+									<button type="submit" class="chck-btn22">Confirm Purchase</button>
 								</form>
 							</div>
 						</div>

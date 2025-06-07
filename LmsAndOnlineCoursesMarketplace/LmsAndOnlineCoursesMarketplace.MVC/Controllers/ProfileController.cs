@@ -1,4 +1,5 @@
 using LmsAndOnlineCoursesMarketplace.MVC.Models.Course;
+using LmsAndOnlineCoursesMarketplace.MVC.Models.OtherUserProfile;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LmsAndOnlineCoursesMarketplace.Persistence.Contexts;
@@ -76,6 +77,21 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
                 Price = c.Price,
                 AuthorName = c.User?.Name ?? "Unknown"
             }).ToList();
+            
+            var subscriptions = await _context.UserSubscriptions
+                .Where(us => us.SubscriberId == user.Id)
+                .Select(us => us.SubscribedTo)
+                .Select(u => new SubscriptionPreviewVM
+                {
+                    Id = u.Id,
+                    Name = u.Name,
+                    JobPosition = u.JobPosition,
+                    EnrollStudents = u.EnrollStudents,
+                    CourseCnt = u.CoursesCnt
+                })
+                .ToListAsync();
+
+            model.Subscriptions = subscriptions;
             
             if (identityUser != null)
             {

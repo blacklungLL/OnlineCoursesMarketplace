@@ -9,6 +9,7 @@ public class ApplicationDbContext: IdentityDbContext
     public DbSet<Course> Courses { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<UserCoursePurchase> UserCoursePurchases { get; set; }
+    public DbSet<UserSubscription> UserSubscriptions { get; set; }
     
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -38,5 +39,18 @@ public class ApplicationDbContext: IdentityDbContext
             .HasOne(up => up.Course)
             .WithMany(c => c.UserCoursePurchases)
             .HasForeignKey(up => up.CourseId);
+        
+        modelBuilder.Entity<UserSubscription>()
+            .HasKey(us => new { us.SubscriberId, us.SubscribedToId });
+
+        modelBuilder.Entity<UserSubscription>()
+            .HasOne(us => us.Subscriber)
+            .WithMany(u => u.Subscriptions)
+            .HasForeignKey(us => us.SubscriberId);
+
+        modelBuilder.Entity<UserSubscription>()
+            .HasOne(us => us.SubscribedTo)
+            .WithMany(u => u.Subscribers)
+            .HasForeignKey(us => us.SubscribedToId);
     }
 }

@@ -1,7 +1,7 @@
 @model LmsAndOnlineCoursesMarketplace.MVC.Models.Profile.ProfileVM
 
 @{
-	ViewData["Title"] = "Профиль";
+	ViewData["Title"] = "Profile";
 }
 
 <div class="wrapper _bg4586">
@@ -13,7 +13,7 @@
 							<div class="row">						
 								<div class="col-lg-6">
 									<a href="#" class="_216b22">										
-										<span><i class="uil uil-cog"></i></span>Setting
+										<span><i class="uil uil-cog"></i></span>Settings
 									</a>
 									<div class="dp_dt150">						
 										<div class="img148">
@@ -53,7 +53,7 @@
 								</div>
 								<div class="col-lg-6">
 									<a href="settings" class="_216b12">										
-										<span><i class="uil uil-cog"></i></span>Setting
+										<span><i class="uil uil-cog"></i></span>Settings
 									</a>
 									<div class="rgt-145">
 										<ul class="tutor_social_links">
@@ -175,8 +175,8 @@
 												{
 													foreach (var course in Model.PurchasedCourses)
 													{
-														<div class="col-md-9 col-lg-3">
-															<div class="fcrse_1 mt-30">
+														<div class="col-md-9">
+															<div class="fcrse_1 mt-20">
 																<a asp-controller="Course" asp-action="Index" asp-route-id="@course.Id" class="hf_img">
 																	<img src="@course.ImageLink" alt="@course.Title">
 																	<div class="course-overlay">
@@ -205,7 +205,7 @@
 																	<div class="purchased_badge">Purchased</div>
 																	<div class="auth1lnkprce">
 																		<p class="cr1fot">By <a href="#">@course.AuthorName</a></p>
-																		<div class="prce142">@course.Price.ToString("C")</div>
+																		<div class="prce142">$@course.Price</div>
 																		<button class="shrt-cart-btn" title="cart">
 																			<i class="uil uil-shopping-cart-alt"></i>
 																		</button>

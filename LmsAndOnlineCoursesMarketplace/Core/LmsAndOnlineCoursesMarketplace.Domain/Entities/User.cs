@@ -18,4 +18,6 @@ public class User : BaseAuditableEntity
     public virtual IdentityUser? IdentityUser { get; set; }
     public virtual ICollection<Course> Courses { get; set; }
     public virtual ICollection<UserCoursePurchase> PurchasedCourses { get; set; }
+    public virtual ICollection<UserSubscription> Subscribers { get; set; }
+    public virtual ICollection<UserSubscription> Subscriptions { get; set; }
 }
