@@ -37,7 +37,7 @@ public class HomeController : Controller
         var viewModel = new HomeVM
         {
             FeaturedCourses = courses,
-            AllCourses = courses
+            AllCourses = courses,
         };
         
         var identityUser = await _userManager.GetUserAsync(User);
@@ -49,6 +49,7 @@ public class HomeController : Controller
 
             if (user != null)
             {
+                ViewBag.UserId = user.Id;
                 ViewBag.UserName = user.Name;
                 ViewBag.JobPosition = user.JobPosition;
                 ViewBag.EnrollStudents = user.EnrollStudents;

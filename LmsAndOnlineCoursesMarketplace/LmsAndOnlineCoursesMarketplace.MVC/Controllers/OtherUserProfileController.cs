@@ -23,7 +23,6 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
         [Route("OtherUserProfile/{id}")]
         public async Task<IActionResult> Index(int id)
         {
-            // 1. Получаем пользователя из БД
             var user = await _context.Users
                 .Include(u => u.Courses)
                 .Include(u => u.Subscribers)
@@ -34,7 +33,6 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
                 return NotFound();
             }
 
-            // 2. Получаем текущего пользователя для проверки подписки
             var identityUser = await _userManager.GetUserAsync(User);
             int currentUserId = -1;
 
@@ -46,7 +44,6 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
                 currentUserId = currentUser?.Id ?? -1;
             }
 
-            // 3. Проверяем, подписан ли текущий пользователь на этого
             bool isSubscribed = false;
             if (currentUserId != -1)
             {
@@ -54,10 +51,10 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
                     .AnyAsync(us => us.SubscriberId == currentUserId && us.SubscribedToId == user.Id);
             }
 
-            // 4. Формируем ViewModel
             var model = new ProfileVM
             {
                 Id = user.Id,
+                UserId = user.Id,
                 Name = user.Name,
                 Email = user.Email,
                 JobPosition = user.JobPosition,
@@ -84,6 +81,22 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
                     })
                     .ToList() ?? new List<CourseVM>()
             };
+            
+            if (identityUser != null)
+            {
+                var curUser = await _context.Users
+                    .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
+
+                if (curUser != null)
+                {
+                    ViewBag.UserId = user.Id;
+                    ViewBag.UserName = user.Name;
+                    ViewBag.JobPosition = user.JobPosition;
+                    ViewBag.EnrollStudents = user.EnrollStudents;
+                    ViewBag.CoursesCnt = user.CoursesCnt;
+                    ViewBag.UserEmail = user.Email;
+                }
+            }
 
             return View(model);
         }

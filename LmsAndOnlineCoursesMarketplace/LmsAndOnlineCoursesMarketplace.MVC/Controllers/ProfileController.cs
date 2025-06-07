@@ -29,6 +29,9 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
             
             var user = await _context.Users
                 .Include(u => u.Courses)
+                .Include(u => u.Subscribers)
+                .Include(u => u.Subscriptions)
+                .ThenInclude(us => us.SubscribedTo)
                 .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
 
             if (user == null)
@@ -36,6 +39,7 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
 
             var model = new ProfileVM
             {
+                UserId = user.Id,
                 Name = user.Name,
                 Email = user.Email,
                 JobPosition = user.JobPosition,
@@ -55,12 +59,23 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
                         Language = c.Language,
                         UserId = c.UserId
                     })
-                    .ToList() ?? new List<CourseVM>()
+                    .ToList() ?? new List<CourseVM>(),
+                
+                Subscriptions = user.Subscriptions?
+                    .Select(us => us.SubscribedTo)
+                    .Select(u => new SubscriptionPreviewVM
+                    {
+                        Id = u.Id,
+                        Name = u.Name,
+                        JobPosition = u.JobPosition,
+                        EnrollStudents = u.EnrollStudents,
+                        CourseCnt = u.CoursesCnt
+                    }).ToList() ?? new List<SubscriptionPreviewVM>()
             };
             
             var purchased = await _context.UserCoursePurchases
                 .Include(up => up.Course)
-                .ThenInclude(c => c.User) // связь с автором курса
+                .ThenInclude(c => c.User)
                 .Where(up => up.UserId == user.Id)
                 .Select(up => up.Course)
                 .ToListAsync();
@@ -100,6 +115,7 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
 
                 if (userForViewBag != null)
                 {
+                    ViewBag.UserId = user.Id;
                     ViewBag.UserName = user.Name;
                     ViewBag.JobPosition = user.JobPosition;
                     ViewBag.EnrollStudents = user.EnrollStudents;

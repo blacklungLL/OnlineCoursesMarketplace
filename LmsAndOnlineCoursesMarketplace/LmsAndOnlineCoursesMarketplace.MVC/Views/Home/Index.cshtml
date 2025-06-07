@@ -468,7 +468,7 @@
 						<div class="right_side">
 							<div class="fcrse_2 mb-30">
 								<div class="tutor_img">
-									<a href="Profile"><img src="~/assets/images/left-imgs/img-10.jpg" alt=""></a>
+									<a href="Profile"><img src="@Url.Content($"~/assets/images/left-imgs/img-{ViewBag.UserId}.jpg")" alt=""></a>
 								</div>
 								@if (ViewBag.UserName != null)
 								{

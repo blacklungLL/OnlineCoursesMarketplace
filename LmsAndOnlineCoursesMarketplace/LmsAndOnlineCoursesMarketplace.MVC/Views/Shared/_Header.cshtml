@@ -59,7 +59,7 @@
 							</div>							
 						</div>							
 					</a>
-					<a class="vbm_btn" href="Chats">View All <i class='uil uil-arrow-right'></i></a>
+					<a class="vbm_btn" asp-controller="Chats" asp-action="Index">View All <i class='uil uil-arrow-right'></i></a>
 				</div>
 			</li>
 			<li class="dropdown-noti">
@@ -99,12 +99,12 @@
 			</li>
 			<li class="profile-dropdown">
 				<a href="#" class="opts_account" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-					<img src="~/assets/images/hd_dp.jpg" alt="">
+					<img src="@Url.Content($"~/assets/images/left-imgs/img-{ViewBag.UserId}.jpg")" alt="">
 				</a>
 					<div class="dropdown-menu dropdown_account drop-down dropdown-menu-end">
 						<div class="channel_my">
 							<div class="profile_link">
-								<img src="~/assets/images/hd_dp.jpg" alt="">
+								<img src="@Url.Content($"~/assets/images/left-imgs/img-{ViewBag.UserId}.jpg")" alt="">
 								<div class="pd_content">
 									<div class="rhte85">
 										<h6>@ViewBag.UserName</h6>
@@ -127,10 +127,10 @@
 						</div>
 						<a href="instructor_dashboard" class="item channel_item">Cursus dashboard</a>						
 						<a href="membership" class="item channel_item">Paid Memberships</a>
-						<a href="settings" class="item channel_item">Settings</a>
+						<a asp-controller="Settings" asp-action="Index" class="item channel_item">Settings</a>
 						<a href="help" class="item channel_item">Help</a>
 						<a href="feedback" class="item channel_item">Send Feedback</a>
-						<a href="Login" class="item channel_item">Sign Out</a>
+						<a asp-controller="Login" asp-action="Index" class="item channel_item">Sign Out</a>
 					</div>
 			</li>
 		</ul>

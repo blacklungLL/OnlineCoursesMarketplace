@@ -46,6 +46,7 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
 
                 if (userForViewBag != null)
                 {
+                    ViewBag.UserId = user.Id;
                     ViewBag.UserName = user.Name;
                     ViewBag.JobPosition = user.JobPosition;
                     ViewBag.EnrollStudents = user.EnrollStudents;

@@ -62,6 +62,7 @@ public class CourseController : Controller
 
             if (user != null)
             {
+                ViewBag.UserId = user.Id;
                 ViewBag.UserName = user.Name;
                 ViewBag.JobPosition = user.JobPosition;
                 ViewBag.EnrollStudents = user.EnrollStudents;

@@ -17,7 +17,7 @@
 									</a>
 									<div class="dp_dt150">						
 										<div class="img148">
-											<img src="~/assets/images/hd_dp.jpg" alt="">										
+											<img src="@Url.Content($"~/assets/images/left-imgs/img-{Model.UserId}.jpg")" alt="">										
 										</div>
 										<div class="prfledt1">
 											<h2>@Model.Name</h2>
@@ -45,7 +45,7 @@
 										</li>
 										<li>
 											<div class="_ttl121">
-												<div class="_ttl122">Subscriptions</div>
+												<div class="_ttl122">Subscribers</div>
 												<div class="_ttl123">@Model.SubscriptionsCnt</div>
 											</div>
 										</li>
@@ -200,7 +200,7 @@
 																		<span class="vdt14">@course.Views views</span>
 																		<span class="vdt14">15 days ago</span>
 																	</div>
-																	<a asp-controller="Course" asp-action="Details" asp-route-id="@course.Id" class="crse14s title900">@course.Title</a>
+																	<a asp-controller="Course" asp-action="Index" asp-route-id="@course.Id" class="crse14s title900">@course.Title</a>
 																	<a href="#" class="crse-cate">@course.Category | @course.Language</a>
 																	<div class="purchased_badge">Purchased</div>
 																	<div class="auth1lnkprce">
@@ -301,103 +301,37 @@
 										<div class="_htg452">
 											<h3>Subscriptions</h3>
 											<div class="row">
-												<div class="col-lg-3 col-md-4">
-													<div class="fcrse_1 mt-30">
-														<div class="tutor_img">
-															<a href="#"><img src="~/assets/images/left-imgs/img-1.jpg" alt=""></a>												
-														</div>
-														<div class="tutor_content_dt">
-															<div class="tutor150">
-																<a href="#" class="tutor_name">John Doe</a>
-																<div class="mef78" title="Verify">
-																	<i class="uil uil-check-circle"></i>
+												@if (Model.Subscriptions.Any())
+												{
+													foreach (var sub in Model.Subscriptions)
+													{
+														<div class="col-lg-3 col-md-4">
+															<div class="fcrse_1 mt-30">
+																<div class="tutor_img">
+																	<a asp-controller="OtherUserProfile" asp-action="Index" asp-route-id="@sub.Id" ><img src="@Url.Content($"~/assets/images/left-imgs/img-{sub.Id}.jpg")" alt=""></a>
+																</div>
+																<div class="tutor_content_dt">
+																	<div class="tutor150">
+																		<a asp-controller="OtherUserProfile" asp-action="Index" asp-route-id="@sub.Id" class="tutor_name">@sub.Name</a>
+																		<div class="mef78" title="Verify">
+																			<i class="uil uil-check-circle"></i>
+																		</div>
+																	</div>
+																	<div class="tutor_cate">@sub.JobPosition</div>
+																	<ul class="tutor_social_links">
+																		<li><button class="sbbc145">Subscribed</button></li>
+																		<li><button class="sbbc146"><i class="uil uil-bell"></i></button></li>
+																	</ul>
+																	<div class="tut1250">
+																		<span class="vdt15">@sub.EnrollStudents Students</span>
+																		<span class="vdt15">@sub.CourseCnt Courses</span>
+																	</div>
 																</div>
 															</div>
-															<div class="tutor_cate">Wordpress &amp; Plugin Tutor</div>
-															<ul class="tutor_social_links">
-																<li><button class="sbbc145">Subscribed</button></li>
-																<li><button class="sbbc146"><i class="uil uil-bell"></i></button></li>
-															</ul>
-															<div class="tut1250">
-																<span class="vdt15">100K Students</span>
-																<span class="vdt15">15 Courses</span>
-															</div>
 														</div>
-													</div>										
-												</div>
-												<div class="col-lg-3 col-md-4">
-													<div class="fcrse_1 mt-30">
-														<div class="tutor_img">
-															<a href="#"><img src="~/assets/images/left-imgs/img-2.jpg" alt=""></a>											
-														</div>
-														<div class="tutor_content_dt">
-															<div class="tutor150">
-																<a href="#" class="tutor_name">Kerstin Cable</a>
-																<div class="mef78" title="Verify">
-																	<i class="uil uil-check-circle"></i>
-																</div>
-															</div>
-															<div class="tutor_cate">Language Learning Coach, Writer, Online Tutor</div>
-															<ul class="tutor_social_links">
-																<li><button class="sbbc145">Subscribed</button></li>
-																<li><button class="sbbc146"><i class="uil uil-bell"></i></button></li>
-															</ul>
-															<div class="tut1250">
-																<span class="vdt15">14K Students</span>
-																<span class="vdt15">11 Courses</span>
-															</div>
-														</div>
-													</div>										
-												</div>
-												<div class="col-lg-3 col-md-4">
-													<div class="fcrse_1 mt-30">
-														<div class="tutor_img">
-															<a href="#"><img src="~/assets/images/left-imgs/img-3.jpg" alt=""></a>												
-														</div>
-														<div class="tutor_content_dt">
-															<div class="tutor150">
-																<a href="#" class="tutor_name">Jose Portilla</a>
-																<div class="mef78" title="Verify">
-																	<i class="uil uil-check-circle"></i>
-																</div>
-															</div>
-															<div class="tutor_cate">Head of Data Science, Pierian Data Inc.</div>
-															<ul class="tutor_social_links">
-																<li><button class="sbbc145">Subscribed</button></li>
-																<li><button class="sbbc146"><i class="uil uil-bell"></i></button></li>
-															</ul>
-															<div class="tut1250">
-																<span class="vdt15">1M Students</span>
-																<span class="vdt15">25 Courses</span>
-															</div>
-														</div>
-													</div>										
-												</div>
-												<div class="col-lg-3 col-md-4">
-													<div class="fcrse_1 mt-30">
-														<div class="tutor_img">
-															<a href="#"><img src="~/assets/images/left-imgs/img-3.jpg" alt=""></a>												
-														</div>
-														<div class="tutor_content_dt">
-															<div class="tutor150">
-																<a href="#" class="tutor_name">Jose Portilla</a>
-																<div class="mef78" title="Verify">
-																	<i class="uil uil-check-circle"></i>
-																</div>
-															</div>
-															<div class="tutor_cate">Head of Data Science, Pierian Data Inc.</div>
-															<ul class="tutor_social_links">
-																<li><button class="sbbc145">Subscribed</button></li>
-																<li><button class="sbbc146"><i class="uil uil-bell"></i></button></li>
-															</ul>
-															<div class="tut1250">
-																<span class="vdt15">1M Students</span>
-																<span class="vdt15">25 Courses</span>
-															</div>
-														</div>
-													</div>										
-												</div>
-											</div>				
+													}
+												}
+											</div>			
 										</div>																	
 									</div>							
 								</div>

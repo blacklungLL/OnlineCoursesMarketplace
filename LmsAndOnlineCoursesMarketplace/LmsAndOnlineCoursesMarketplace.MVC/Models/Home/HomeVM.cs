@@ -1,4 +1,5 @@
 using LmsAndOnlineCoursesMarketplace.Application.Features.Courses.Queries;
+using LmsAndOnlineCoursesMarketplace.MVC.Models.Profile;
 
 namespace LmsAndOnlineCoursesMarketplace.MVC.Models.Home;
 

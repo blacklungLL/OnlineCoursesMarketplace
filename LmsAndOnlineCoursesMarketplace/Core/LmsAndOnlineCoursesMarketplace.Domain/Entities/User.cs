@@ -13,7 +13,7 @@ public class User : BaseAuditableEntity
     public int CoursesCnt { get; set; }
     public int ReviewsCnt { get; set; }
     public int SubscriptionsCnt { get; set; }
-    public decimal Balance { get; set; } = 100.0m;
+    public decimal Balance { get; set; } = 350.0m;
     public string? IdentityUserId { get; set; }
     public virtual IdentityUser? IdentityUser { get; set; }
     public virtual ICollection<Course> Courses { get; set; }
