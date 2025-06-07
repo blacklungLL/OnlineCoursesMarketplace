@@ -468,18 +468,18 @@
 						<div class="right_side">
 							<div class="fcrse_2 mb-30">
 								<div class="tutor_img">
-									<a href="Profile"><img src="@Url.Content($"~/assets/images/left-imgs/img-{ViewBag.UserId}.jpg")" alt=""></a>
+									<a href="Profile"><img src="@Url.Content($"~/assets/images/left-imgs/img-{ViewBag.CurrentUserId}.jpg")" alt=""></a>
 								</div>
-								@if (ViewBag.UserName != null)
+								@if (ViewBag.CurrentUserName != null)
 								{
 									<div class="tutor_content_dt">
 										<div class="tutor150">
-											<a href="Profile" class="tutor_name">@ViewBag.UserName</a>
+											<a href="Profile" class="tutor_name">@ViewBag.CurrentUserName</a>
 											<div class="mef78" title="Verify">
 												<i class="uil uil-check-circle"></i>
 											</div>
 										</div>
-										<div class="tutor_cate">@ViewBag.JobPosition</div>
+										<div class="tutor_cate">@ViewBag.CurrentJobPosition</div>
 										<ul class="tutor_social_links">
 											<li><a href="#" class="fb"><i class="fab fa-facebook-f"></i></a></li>
 											<li><a href="#" class="tw"><i class="fab fa-twitter"></i></a></li>
@@ -487,8 +487,8 @@
 											<li><a href="#" class="yu"><i class="fab fa-youtube"></i></a></li>
 										</ul>
 										<div class="tut1250">
-											<span class="vdt15">@ViewBag.EnrollStudents Students</span>
-											<span class="vdt15">@ViewBag.CoursesCnt Courses</span>
+											<span class="vdt15">@ViewBag.CurrentEnrollStudents Students</span>
+											<span class="vdt15">@ViewBag.CurrentCoursesCnt Courses</span>
 										</div>
 										<a href="Profile" class="prfle12link">Go To Profile</a>
 									</div>

@@ -99,20 +99,20 @@
 			</li>
 			<li class="profile-dropdown">
 				<a href="#" class="opts_account" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-					<img src="@Url.Content($"~/assets/images/left-imgs/img-{ViewBag.UserId}.jpg")" alt="">
+					<img src="@Url.Content($"~/assets/images/left-imgs/img-{ViewBag.CurrentUserId}.jpg")" alt="">
 				</a>
 					<div class="dropdown-menu dropdown_account drop-down dropdown-menu-end">
 						<div class="channel_my">
 							<div class="profile_link">
-								<img src="@Url.Content($"~/assets/images/left-imgs/img-{ViewBag.UserId}.jpg")" alt="">
+								<img src="@Url.Content($"~/assets/images/left-imgs/img-{ViewBag.CurrentUserId}.jpg")" alt="">
 								<div class="pd_content">
 									<div class="rhte85">
-										<h6>@ViewBag.UserName</h6>
+										<h6>@ViewBag.CurrentUserName</h6>
 										<div class="mef78" title="Verify">
 											<i class='uil uil-check-circle'></i>
 										</div>
 									</div>
-									<span>@ViewBag.UserEmail</span>
+									<span>@ViewBag.CurrentEmail</span>
 								</div>							
 							</div>
 							<a asp-controller="Profile" asp-action="Index" class="dp_link_12">View Profile</a>						

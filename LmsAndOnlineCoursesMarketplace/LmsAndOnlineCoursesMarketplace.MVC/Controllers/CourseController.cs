@@ -1,4 +1,5 @@
 using LmsAndOnlineCoursesMarketplace.Application.Features.Courses.Queries;
+using LmsAndOnlineCoursesMarketplace.Domain.Entities;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.Course;
 using LmsAndOnlineCoursesMarketplace.Persistence.Contexts;
 using MediatR;
@@ -55,20 +56,21 @@ public class CourseController : Controller
         
         var identityUser = await _userManager.GetUserAsync(User);
     
+        User? curUser = null;
+
         if (identityUser != null)
         {
-            var user = await _context.Users
+            curUser = await _context.Users
                 .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
-
-            if (user != null)
-            {
-                ViewBag.UserId = user.Id;
-                ViewBag.UserName = user.Name;
-                ViewBag.JobPosition = user.JobPosition;
-                ViewBag.EnrollStudents = user.EnrollStudents;
-                ViewBag.CoursesCnt = user.CoursesCnt;
-                ViewBag.UserEmail = user.Email;
-            }
+        }
+            
+        if (curUser != null)
+        {
+            ViewBag.CurrentUserId = curUser.Id;
+            ViewBag.CurrentUserName = curUser.Name;
+            ViewBag.CurrentJobPosition = curUser.JobPosition;
+            ViewBag.CurrentSubscriptionsCnt = curUser.SubscriptionsCnt;
+            ViewBag.CurrentEmail = curUser.Email;
         }
 
         return View(viewModel);

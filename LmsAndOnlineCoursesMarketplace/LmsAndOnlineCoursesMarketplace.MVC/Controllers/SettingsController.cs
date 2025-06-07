@@ -1,3 +1,4 @@
+using LmsAndOnlineCoursesMarketplace.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -39,20 +40,21 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
                 Description = user.Description
             };
             
+            User? curUser = null;
+
             if (identityUser != null)
             {
-                var userForViewBag = await _context.Users
+                curUser = await _context.Users
                     .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
-
-                if (userForViewBag != null)
-                {
-                    ViewBag.UserId = user.Id;
-                    ViewBag.UserName = user.Name;
-                    ViewBag.JobPosition = user.JobPosition;
-                    ViewBag.EnrollStudents = user.EnrollStudents;
-                    ViewBag.CoursesCnt = user.CoursesCnt;
-                    ViewBag.UserEmail = user.Email;
-                }
+            }
+            
+            if (curUser != null)
+            {
+                ViewBag.CurrentUserId = curUser.Id;
+                ViewBag.CurrentUserName = curUser.Name;
+                ViewBag.CurrentJobPosition = curUser.JobPosition;
+                ViewBag.CurrentSubscriptionsCnt = curUser.SubscriptionsCnt;
+                ViewBag.CurrentEmail = curUser.Email;
             }
 
             return View(model);
