@@ -1,6 +1,7 @@
 using LmsAndOnlineCoursesMarketplace.Application.Features.Courses.Queries;
 using LmsAndOnlineCoursesMarketplace.Domain.Entities;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.Course;
+using LmsAndOnlineCoursesMarketplace.MVC.Models.OtherUserProfile;
 using LmsAndOnlineCoursesMarketplace.Persistence.Contexts;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -55,6 +56,11 @@ public class CourseController : Controller
         };
         
         var identityUser = await _userManager.GetUserAsync(User);
+        
+        var currentUser = await _context.Users
+            .Include(u => u.Subscriptions)
+            .ThenInclude(us => us.SubscribedTo)
+            .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
     
         User? curUser = null;
 
@@ -71,6 +77,12 @@ public class CourseController : Controller
             ViewBag.CurrentJobPosition = curUser.JobPosition;
             ViewBag.CurrentSubscriptionsCnt = curUser.SubscriptionsCnt;
             ViewBag.CurrentEmail = curUser.Email;
+            ViewBag.Subscriptions = currentUser.Subscriptions?
+                .Select(us => new SubscriptionPreviewVM()
+                {
+                    Id = us.SubscribedToId,
+                    Name = us.SubscribedTo?.Name ?? "Unknown",
+                }).ToList() ?? new List<SubscriptionPreviewVM>();
         }
 
         return View(viewModel);

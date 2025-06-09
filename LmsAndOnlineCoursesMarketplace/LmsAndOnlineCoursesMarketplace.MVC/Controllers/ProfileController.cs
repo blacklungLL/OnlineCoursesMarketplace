@@ -117,6 +117,11 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
                     .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
             }
             
+            var currentProfile = await _context.Users
+                .Include(u => u.Subscriptions)
+                .ThenInclude(us => us.SubscribedTo)
+                .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
+            
             if (curUser != null)
             {
                 ViewBag.CurrentUserId = curUser.Id;
@@ -124,6 +129,12 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
                 ViewBag.CurrentJobPosition = curUser.JobPosition;
                 ViewBag.CurrentSubscriptionsCnt = curUser.SubscriptionsCnt;
                 ViewBag.CurrentEmail = curUser.Email;
+                ViewBag.Subscriptions = currentProfile.Subscriptions?
+                    .Select(us => new SubscriptionPreviewVM()
+                    {
+                        Id = us.SubscribedToId,
+                        Name = us.SubscribedTo?.Name ?? "Unknown",
+                    }).ToList() ?? new List<SubscriptionPreviewVM>();
             }
             
             return View(model);

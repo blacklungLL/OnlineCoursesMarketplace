@@ -4,6 +4,8 @@ using LmsAndOnlineCoursesMarketplace.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using LmsAndOnlineCoursesMarketplace.MVC.Models;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.Home;
+using LmsAndOnlineCoursesMarketplace.MVC.Models.OtherUserProfile;
+using LmsAndOnlineCoursesMarketplace.MVC.Models.Profile;
 using LmsAndOnlineCoursesMarketplace.Persistence.Contexts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -32,16 +34,22 @@ public class HomeController : Controller
     [Authorize]
     public async Task<IActionResult> Index()
     {
+        var identityUser = await _userManager.GetUserAsync(User);
+        
         var courseId = 0;
         var query = new GetByCourseIdQuery(courseId);
         var courses = await _mediator.Send(query);
+        
+        var currentUser = await _context.Users
+            .Include(u => u.Subscriptions)
+            .ThenInclude(us => us.SubscribedTo)
+            .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
+        
         var viewModel = new HomeVM
         {
             FeaturedCourses = courses,
             AllCourses = courses,
         };
-        
-        var identityUser = await _userManager.GetUserAsync(User);
     
         User? curUser = null;
 
@@ -60,6 +68,12 @@ public class HomeController : Controller
             ViewBag.CurrentEnrollStudents = curUser.EnrollStudents;
             ViewBag.CurrentCoursesCnt = curUser.CoursesCnt;
             ViewBag.CurrentEmail = curUser.Email;
+            ViewBag.Subscriptions = currentUser.Subscriptions?
+                .Select(us => new SubscriptionPreviewVM()
+                {
+                    Id = us.SubscribedToId,
+                    Name = us.SubscribedTo?.Name ?? "Unknown",
+                }).ToList() ?? new List<SubscriptionPreviewVM>();
         }
         
         return View(viewModel);
