@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using LmsAndOnlineCoursesMarketplace.Application.Features.Courses.Queries;
 using LmsAndOnlineCoursesMarketplace.Domain.Entities;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.Course;
@@ -25,12 +26,14 @@ public class CourseController : Controller
 
     public async Task<IActionResult> Index(int id)
     {
-        var query = new GetByCourseIdQuery(id);
-        var courses = await _mediator.Send(query);
-        var course = courses.FirstOrDefault();
+        var course = await _context.Courses.FindAsync(id);
         
         if (course == null)
             return NotFound();
+        
+        course.Views += 1;
+        _context.Courses.Update(course);
+        await _context.SaveChangesAsync();
 
         var viewModel = new CourseVM
         {
@@ -38,7 +41,7 @@ public class CourseController : Controller
             Title = course.Title,
             ShortDescription = course.ShortDescription,
             UserId = course.UserId,
-            AuthorName = course.AuthorName ?? "Unknown",
+            AuthorName = course.User?.Name ?? "Unknown",
             ImageLink = course.ImageLink,
             Rating = course.Rating,
             RatingsCnt = course.RatingsCnt,
@@ -86,5 +89,119 @@ public class CourseController : Controller
         }
 
         return View(viewModel);
+    }
+    
+    [HttpPost("Like/{id}")]
+    public async Task<IActionResult> Like(int id)
+    {
+        var identityUser = await _userManager.GetUserAsync(User);
+        if (identityUser == null) return Challenge();
+
+        var currentUser = await _context.Users
+            .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
+
+        if (currentUser == null) return NotFound();
+
+        var course = await _context.Courses
+            .FirstOrDefaultAsync(c => c.Id == id);
+
+        if (course == null) return NotFound();
+
+        var reaction = await _context.CourseReactions
+            .FirstOrDefaultAsync(r => r.CourseId == id && r.UserId == currentUser.Id);
+
+        if (reaction != null)
+        {
+            if (reaction.IsLike)
+            {
+                course.LikesCnt -= 1;
+                _context.CourseReactions.Remove(reaction);
+            }
+            else if (reaction.IsDislike)
+            {
+                course.DislikesCnt -= 1;
+                course.LikesCnt += 1;
+
+                reaction.IsDislike = false;
+                reaction.IsLike = true;
+
+                _context.CourseReactions.Update(reaction);
+            }
+        }
+        else
+        {
+            course.LikesCnt += 1;
+
+            var newReaction = new CourseReaction
+            {
+                CourseId = id,
+                UserId = currentUser.Id,
+                IsLike = true
+            };
+
+            await _context.CourseReactions.AddAsync(newReaction);
+        }
+
+        _context.Courses.Update(course);
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction("Index", "Course", new { id });
+    }
+    
+    [HttpPost("Dislike/{id}")]
+    public async Task<IActionResult> Dislike(int id)
+    {
+        var identityUser = await _userManager.GetUserAsync(User);
+        if (identityUser == null) return Challenge();
+
+        var currentUser = await _context.Users
+            .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
+
+        if (currentUser == null) return NotFound();
+
+        var course = await _context.Courses
+            .FirstOrDefaultAsync(c => c.Id == id);
+
+        if (course == null) return NotFound();
+
+        var reaction = await _context.CourseReactions
+            .FirstOrDefaultAsync(r => r.CourseId == id && r.UserId == currentUser.Id);
+
+        if (reaction != null)
+        {
+            if (reaction.IsDislike)
+            {
+                course.DislikesCnt -= 1;
+                _context.CourseReactions.Remove(reaction);
+            }
+            else if (reaction.IsLike)
+            {
+                course.LikesCnt -= 1;
+                course.DislikesCnt += 1;
+
+                reaction.IsLike = false;
+                reaction.IsDislike = true;
+
+                _context.Courses.Update(course);
+                _context.CourseReactions.Update(reaction);
+            }
+        }
+        else
+        {
+            course.DislikesCnt += 1;
+
+            var newReaction = new CourseReaction
+            {
+                CourseId = id,
+                UserId = currentUser.Id,
+                IsDislike = true
+            };
+
+            await _context.CourseReactions.AddAsync(newReaction);
+            _context.Courses.Update(course);
+        }
+
+        await _context.SaveChangesAsync();
+        return RedirectToAction("Index", new { id });
     }
 }

@@ -17,6 +17,7 @@ public class User : BaseAuditableEntity
     public string? IdentityUserId { get; set; }
     public virtual IdentityUser? IdentityUser { get; set; }
     public virtual ICollection<Course> Courses { get; set; }
+    public virtual ICollection<CourseReaction> CourseReactions { get; set; } = new HashSet<CourseReaction>();
     public virtual ICollection<UserCoursePurchase> PurchasedCourses { get; set; }
     public virtual ICollection<UserSubscription> Subscribers { get; set; }
     public virtual ICollection<UserSubscription> Subscriptions { get; set; }

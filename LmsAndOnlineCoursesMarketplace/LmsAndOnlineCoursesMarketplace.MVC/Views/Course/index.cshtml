@@ -110,10 +110,18 @@
                                     <a href="#" class="lkcm152"><i class="uil uil-eye"></i><span>@Model.Views</span></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="lkcm152"><i class="uil uil-thumbs-up"></i><span>@Model.LikesCnt</span></a>
+                                    <form asp-controller="Course" asp-action="Like" method="post" asp-route-id="@Model.Id">
+                                        <button type="submit" class="lkcm152">
+                                            <i class="uil uil-thumbs-up"></i><span>@Model.LikesCnt</span>
+                                        </button>
+                                    </form>
                                 </li>
                                 <li>
-                                    <a href="#" class="lkcm152"><i class="uil uil-thumbs-down"></i><span>@Model.DislikesCnt</span></a>
+                                    <form asp-controller="Course" asp-action="Dislike" method="post" asp-route-id="@Model.Id">
+                                        <button type="submit" class="lkcm152">
+                                            <i class="uil uil-thumbs-down"></i><span>@Model.DislikesCnt</span>
+                                        </button>
+                                    </form>
                                 </li>
                                 <li>
                                     <a href="#" class="lkcm152"><i class="uil uil-share-alt"></i><span>@Model.SharedCnt</span></a>
