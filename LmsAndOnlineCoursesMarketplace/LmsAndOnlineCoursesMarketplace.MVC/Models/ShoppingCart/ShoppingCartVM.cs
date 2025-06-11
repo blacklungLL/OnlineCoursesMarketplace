@@ -10,6 +10,7 @@ public class ShoppingCartVM
 public class CourseSummaryVM
 {
     public int Id { get; set; }
+    public int AuthorId { get; set; }
     public string Title { get; set; }
     public string ImageLink { get; set; }
     public string Category { get; set; }

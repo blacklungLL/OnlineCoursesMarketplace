@@ -204,7 +204,7 @@
 																	<a href="#" class="crse-cate">@course.Category | @course.Language</a>
 																	<div class="purchased_badge">Purchased</div>
 																	<div class="auth1lnkprce">
-																		<p class="cr1fot">By <a href="#">@course.AuthorName</a></p>
+																		<p class="cr1fot">By <a asp-controller="OtherUserProfile" asp-action="Index" asp-route-id="@course.AuthorId">@course.AuthorName</a></p>
 																		<div class="prce142">$@course.Price</div>
 																		<button class="shrt-cart-btn" title="cart">
 																			<i class="uil uil-shopping-cart-alt"></i>

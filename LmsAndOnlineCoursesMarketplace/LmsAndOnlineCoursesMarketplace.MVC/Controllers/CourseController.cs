@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-using LmsAndOnlineCoursesMarketplace.Application.Features.Courses.Queries;
 using LmsAndOnlineCoursesMarketplace.Domain.Entities;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.Course;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.OtherUserProfile;

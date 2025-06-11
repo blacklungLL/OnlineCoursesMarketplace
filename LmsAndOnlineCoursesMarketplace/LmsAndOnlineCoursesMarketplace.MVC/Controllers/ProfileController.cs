@@ -84,6 +84,7 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
             model.PurchasedCourses = purchased.Select(c => new CourseSummaryVM
             {
                 Id = c.Id,
+                AuthorId = c.User.Id,
                 Title = c.Title,
                 ImageLink = c.ImageLink,
                 Category = c.Category,
