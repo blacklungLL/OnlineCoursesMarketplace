@@ -16,6 +16,9 @@ public class User : BaseAuditableEntity
     public decimal Balance { get; set; } = 350.0m;
     public string? IdentityUserId { get; set; }
     public virtual IdentityUser? IdentityUser { get; set; }
+    
+    public virtual ICollection<ChatMessage> SentMessages { get; set; } = new List<ChatMessage>();
+    public virtual ICollection<ChatMessage> ReceivedMessages { get; set; } = new List<ChatMessage>();
     public virtual ICollection<Course> Courses { get; set; }
     public virtual ICollection<CourseReaction> CourseReactions { get; set; } = new HashSet<CourseReaction>();
     public virtual ICollection<UserCoursePurchase> PurchasedCourses { get; set; }

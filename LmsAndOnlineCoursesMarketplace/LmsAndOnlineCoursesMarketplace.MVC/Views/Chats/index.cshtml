@@ -1,8 +1,15 @@
+@model LmsAndOnlineCoursesMarketplace.MVC.Models.Chat.ChatVM
+
+@{
+    ViewData["Title"] = "Chats";
+}
+
 <head>
     <title>Cursus - Chats</title>
     <link href="~/assets/css/instructor-dashboard.css" rel="stylesheet">
     <link href="~/assets/css/instructor-responsive.css" rel="stylesheet">
 </head>
+
 <div class="wrapper">
     <div class="sa4d25">
         <div class="container-fluid">
@@ -24,107 +31,46 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="simplebar-content-wrapper">
-                                    <div class="group_messages">
-                                        <div class="chat__message__dt active">
-                                            <div class="user-status">
-                                                <div class="user-avatar">
-                                                    <img src="~/assets/images/left-imgs/img-1.jpg" alt="">
-                                                    <div class="msg__badge">2</div>
+
+                                <ul id="userList" class="group_messages">
+                                    @if (Model.Users != null && Model.Users.Any())
+                                    {
+                                        foreach (var user in Model.Users)
+                                        {
+                                            <li class="chat-user chat__message__dt"
+                                                data-user-id="@user.Id"
+                                                onclick="selectUser(@user.Id, '@user.Name')"
+                                                style="cursor: pointer;">
+                                                <div class="user-status">
+                                                    <div class="user-avatar">
+                                                        <img src="@Url.Content($"~/assets/images/left-imgs/img-{user.Id}.jpg")" alt="@user.Name">
+                                                        <div class="msg__badge">1</div>
+                                                    </div>
+                                                    <p class="user-status-title"><span class="bold">@user.Name</span></p>
+                                                    <p class="user-status-text">Последнее сообщение...</p>
+                                                    <p class="user-status-time floaty">2 min ago</p>
                                                 </div>
-                                                <p class="user-status-title"><span class="bold">John Doe</span></p>
-                                                <p class="user-status-text">Hi! Sir, How are you. I ask you one thing please explain it this video price.</p>
-                                                <p class="user-status-time floaty">7 hours ago</p>
-                                            </div>
-                                        </div>
-                                        <div class="chat__message__dt">
-                                            <div class="user-status">
-                                                <div class="user-avatar">
-                                                    <img src="~/assets/images/left-imgs/img-2.jpg" alt="">
-                                                    <div class="msg__badge">3</div>
-                                                </div>
-                                                <p class="user-status-title"><span class="bold">Kerstin Cable</span></p>
-                                                <p class="user-status-text">Hello, I paid you video tutorial but did not play error 404.</p>
-                                                <p class="user-status-time floaty">8 hours ago</p>
-                                            </div>
-                                        </div>
-                                        <div class="chat__message__dt">
-                                            <div class="user-status">
-                                                <div class="user-avatar">
-                                                    <img src="~/assets/images/left-imgs/img-3.jpg" alt="">
-                                                    <div class="msg__badge">1</div>
-                                                </div>
-                                                <p class="user-status-title"><span class="bold">Jose Portilla</span></p>
-                                                <p class="user-status-text">Thanks Sir, Such a nice video.</p>
-                                                <p class="user-status-time floaty">15 hours ago</p>
-                                            </div>
-                                        </div>
-                                        <div class="chat__message__dt">
-                                            <div class="user-status">
-                                                <div class="user-avatar">
-                                                    <img src="~/assets/images/left-imgs/img-4.jpg" alt="">
-                                                    <div class="msg__badge">7</div>
-                                                </div>
-                                                <p class="user-status-title"><span class="bold">Farhat Amin</span></p>
-                                                <p class="user-status-text">Hi! Sir, this is a purchase key CFKX12536ERUJSKLL</p>
-                                                <p class="user-status-time floaty">22 hours ago</p>
-                                            </div>
-                                        </div>
-                                        <div class="chat__message__dt">
-                                            <div class="user-status">
-                                                <div class="user-avatar">
-                                                    <img src="~/assets/images/left-imgs/img-5.jpg" alt="">
-                                                    <div class="msg__badge">12</div>
-                                                </div>
-                                                <p class="user-status-title"><span class="bold">Kyle Pew</span></p>
-                                                <p class="user-status-text">Pls! Upload .NET Course</p>
-                                                <p class="user-status-time floaty">2 days ago</p>
-                                            </div>
-                                        </div>
-                                        <div class="chat__message__dt">
-                                            <div class="user-status">
-                                                <div class="user-avatar">
-                                                    <img src="~/assets/images/left-imgs/img-6.jpg" alt="">
-                                                </div>
-                                                <p class="user-status-title"><span class="bold">Eli Natoli</span></p>
-                                                <p class="user-status-text">Hi Sir thank you very very much for bootstrap full course.</p>
-                                                <p class="user-status-time floaty">5 days ago</p>
-                                            </div>
-                                        </div>
-                                        <div class="chat__message__dt">
-                                            <div class="user-status">
-                                                <div class="user-avatar">
-                                                    <img src="~/assets/images/left-imgs/img-7.jpg" alt="">
-                                                    <div class="msg__badge">6</div>
-                                                </div>
-                                                <p class="user-status-title"><span class="bold">Jaysen Batchelor</span></p>
-                                                <p class="user-status-text">Thank you! Sir</p>
-                                                <p class="user-status-time floaty">7 days ago</p>
-                                            </div>
-                                        </div>
-                                        <div class="chat__message__dt">
-                                            <div class="user-status">
-                                                <div class="user-avatar">
-                                                    <img src="~/assets/images/left-imgs/img-8.jpg" alt="">
-                                                    <div class="msg__badge">1</div>
-                                                </div>
-                                                <p class="user-status-title"><span class="bold">Quinton Batchelor</span></p>
-                                                <p class="user-status-text">Hey!</p>
-                                                <p class="user-status-time floaty">13 days ago</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                            </li>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <p class="no-chats">Нет доступных собеседников</p>
+                                    }
+                                </ul>
                             </div>
                             <div class="col-xl-8 col-lg-7 col-md-12">
                                 <div class="chatbox_right">
                                     <div class="chat_header">
-                                        <div class="user-status">
+                                        <div class="user-status" id="chatHeader" style="display: none;">
                                             <div class="user-avatar">
-                                                <img src="~/assets/images/left-imgs/img-1.jpg" alt="">
+                                                <img src="" id="chatUserAvatar" alt="User Avatar">
                                             </div>
-                                            <p class="user-status-title"><span class="bold">John Doe</span></p>
+                                            <p class="user-status-title">
+                                                <span class="bold" id="chatUserName">Выберите пользователя</span>
+                                            </p>
                                             <p class="user-status-tag online">Online</p>
+
                                             <div class="user-status-time floaty eps_dots eps_dots5 more_dropdown">
                                                 <a href="#"><i class="uil uil-ellipsis-h"></i></a>
                                                 <div class="dropdown-content">
@@ -137,66 +83,54 @@
                                         </div>
                                     </div>
                                     <div class="messages-line simplebar-content-wrapper2 scrollstyle_4">
-                                        <div class="mCustomScrollbar">
-                                            <div class="main-message-box ta-right">
-                                                <div class="message-dt">
-                                                    <div class="message-inner-dt">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-                                                    </div><!--message-inner-dt end-->
-                                                    <span>Sat, April 10, 1:08 PM</span>
-                                                </div><!--message-dt end-->
-                                            </div><!--main-message-box end-->
-                                            <div class="main-message-box st3">
-                                                <div class="message-dt st3">
-                                                    <div class="message-inner-dt">
-                                                        <p>Cras ultricies ligula.</p>
-                                                    </div><!--message-inner-dt end-->
-                                                    <span>5 minutes ago</span>
-                                                </div><!--message-dt end-->
-                                            </div><!--main-message-box end-->
-                                            <div class="main-message-box ta-right">
-                                                <div class="message-dt">
-                                                    <div class="message-inner-dt">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-                                                    </div><!--message-inner-dt end-->
-                                                    <span>Sat, April 10, 1:08 PM</span>
-                                                </div><!--message-dt end-->
-                                            </div><!--main-message-box end-->
-                                            <div class="main-message-box st3">
-                                                <div class="message-dt st3">
-                                                    <div class="message-inner-dt">
-                                                        <p>Lorem ipsum dolor sit amet</p>
-                                                    </div><!--message-inner-dt end-->
-                                                    <span>2 minutes ago</span>
-                                                </div><!--message-dt end-->
-                                            </div><!--main-message-box end-->
-                                            <div class="main-message-box ta-right">
-                                                <div class="message-dt">
-                                                    <div class="message-inner-dt">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-                                                    </div><!--message-inner-dt end-->
-                                                    <span>Sat, April 10, 1:08 PM</span>
-                                                </div><!--message-dt end-->
-                                            </div><!--main-message-box end-->
-                                            <div class="main-message-box st3">
-                                                <div class="message-dt st3">
-                                                    <div class="message-inner-dt">
-                                                        <p>....</p>
-                                                    </div><!--message-inner-dt end-->
-                                                    <span>Typing...</span>
-                                                </div><!--message-dt end-->
-                                            </div><!--main-message-box end-->
+                                        <div id="messageArea" class="mCustomScrollbar">
+                                            @if (Model.Messages != null && Model.Messages.Any())
+                                            {
+                                                foreach (var msg in Model.Messages)
+                                                {
+                                                    if (msg.IsMine)
+                                                    {
+                                                        <div class="main-message-box ta-right" style="float: right;">
+                                                            <div class="message-dt">
+                                                                <div class="message-inner-dt">
+                                                                    <p>@msg.Content</p>
+                                                                </div>
+                                                                <span>@msg.SentAt</span>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="main-message-box st3">
+                                                            <div class="message-dt st3">
+                                                                <div class="message-inner-dt">
+                                                                    <p>@msg.Content</p>
+                                                                </div>
+                                                                <span>@msg.SentAt</span>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <p id="noMessages">Сообщений пока нет</p>
+                                            }
                                         </div>
                                     </div>
-                                    <div class="message-send-area">
-                                        <form>
+
+                                    <!-- Форма отправки -->
+                                    <div id="chatInput" class="message-send-area" style="display: none;" data-recipient="">
+                                        <form onsubmit="sendMessage(event)">
                                             <div class="mf-field">
                                                 <div class="ui search focus input__msg">
                                                     <div class="ui left icon input swdh19">
-                                                        <input class="prompt srch_explore" type="text" id="chat-widget-message-text-2" name="chat_widget_message_text_2" placeholder="Write a message...">
+                                                        <input class="prompt srch_explore" type="text" id="chat-widget-message-text-2" name="chat-widget-message-text-2" placeholder="Write a message...">
                                                     </div>
                                                 </div>
-                                                <button class="add_msg" type="submit"><i class="uil uil-message"></i></button>
+                                                <button class="add_msg" type="submit">
+                                                    <i class="uil uil-message"></i>
+                                                </button>
                                             </div>
                                         </form>
                                     </div>
@@ -210,7 +144,6 @@
     </div>
 </div>
 <!-- Body End -->
-
 <script src="~/assets/js/vertical-responsive-menu.min.js"></script>
 <script src="~/assets/js/jquery-3.7.1.min.js"></script>
 <script src="~/assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -220,3 +153,4 @@
 <script src="~/assets/js/custom1.js"></script>
 <script src="~/assets/js/night-mode.js"></script>
 <script src="~/assets/js/jquery.mCustomScrollbar.js"></script>
+<script src="~/assets/js/chat.js"></script>

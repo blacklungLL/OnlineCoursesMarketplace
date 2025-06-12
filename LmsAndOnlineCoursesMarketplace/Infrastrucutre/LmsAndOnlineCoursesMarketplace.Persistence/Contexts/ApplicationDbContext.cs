@@ -11,6 +11,7 @@ public class ApplicationDbContext: IdentityDbContext
     public DbSet<UserCoursePurchase> UserCoursePurchases { get; set; }
     public DbSet<UserSubscription> UserSubscriptions { get; set; }
     public DbSet<CourseReaction> CourseReactions { get; set; }
+    public DbSet<ChatMessage> ChatMessages { get; set; }
     
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -66,6 +67,16 @@ public class ApplicationDbContext: IdentityDbContext
             .HasOne(cr => cr.User)
             .WithMany(u => u.CourseReactions)
             .HasForeignKey(cr => cr.UserId);
+        
+        modelBuilder.Entity<ChatMessage>()
+            .HasOne(m => m.Sender)
+            .WithMany(u => u.SentMessages)
+            .HasForeignKey(m => m.SenderId);
+
+        modelBuilder.Entity<ChatMessage>()
+            .HasOne(m => m.Recipient)
+            .WithMany(u => u.ReceivedMessages)
+            .HasForeignKey(m => m.RecipientId);
         
     }
 }

@@ -2,6 +2,7 @@ using LmsAndOnlineCoursesMarketplace.Application.Extensions;
 using LmsAndOnlineCoursesMarketplace.Application.Interfaces.Services;
 using LmsAndOnlineCoursesMarketplace.Infrastructure.Extensions;
 using LmsAndOnlineCoursesMarketplace.Infrastructure.Services;
+using LmsAndOnlineCoursesMarketplace.MVC.Hubs;
 using LmsAndOnlineCoursesMarketplace.Persistence.Contexts;
 using LmsAndOnlineCoursesMarketplace.Persistence.Extensions;
 using Microsoft.AspNetCore.Identity;
@@ -40,7 +41,9 @@ builder.Services.AddTransient<IEmailSender>(provider =>
     ));
 
 // Add services to the container.
+builder.Services.AddSignalR();
 builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 
@@ -60,10 +63,11 @@ app.UseAuthorization();
 
 app.MapStaticAssets();
 
+app.MapHub<ChatHub>("/chatHub");
+
 app.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
 
 app.Run();
