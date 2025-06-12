@@ -20,7 +20,7 @@ public class ChatsController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int? userId)
     {
         var identityUser = await _userManager.GetUserAsync(User);
         var currentUser = await _context.Users
@@ -32,10 +32,13 @@ public class ChatsController : Controller
         var messages = await _context.ChatMessages
             .Where(m => m.SenderId == currentUser.Id || m.RecipientId == currentUser.Id)
             .Include(m => m.Sender)
+            .Include(m => m.Recipient)
             .ToListAsync();
 
         var otherUsers = messages
-            .Select(m => m.SenderId == currentUser.Id ? m.Recipient : m.Sender)
+            .Select(m => 
+                m.SenderId == currentUser.Id ? m.Recipient : m.Sender)
+            .Where(u => u != null)
             .DistinctBy(u => u.Id)
             .ToList();
 
@@ -46,7 +49,11 @@ public class ChatsController : Controller
                 Id = u.Id,
                 Name = u.Name,
                 AvatarUrl = $"~/assets/images/left-imgs/img-{u.Id}.jpg"
-            }).ToList()
+            }).ToList(),
+            SelectedUserId = userId,
+            SelectedUserName = userId.HasValue 
+                ? await _context.Users.Where(u => u.Id == userId.Value).Select(u => u.Name).FirstOrDefaultAsync()
+                : null
         };
         
         User? curUser = null;
@@ -56,6 +63,11 @@ public class ChatsController : Controller
             curUser = await _context.Users
                 .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
         }
+        
+        var currentProfile = await _context.Users
+            .Include(u => u.Subscriptions)
+            .ThenInclude(us => us.SubscribedTo)
+            .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
             
         if (curUser != null)
         {
@@ -66,7 +78,7 @@ public class ChatsController : Controller
             ViewBag.CurrentEnrollStudents = curUser.EnrollStudents;
             ViewBag.CurrentCoursesCnt = curUser.CoursesCnt;
             ViewBag.CurrentEmail = curUser.Email;
-            ViewBag.Subscriptions = currentUser.Subscriptions?
+            ViewBag.Subscriptions = currentProfile.Subscriptions?
                 .Select(us => new SubscriptionPreviewVM()
                 {
                     Id = us.SubscribedToId,

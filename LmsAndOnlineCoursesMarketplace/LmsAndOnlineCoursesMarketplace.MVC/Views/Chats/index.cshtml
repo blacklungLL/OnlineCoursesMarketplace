@@ -31,7 +31,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <ul id="userList" class="group_messages">
                                     @if (Model.Users != null && Model.Users.Any())
                                     {
@@ -39,7 +38,7 @@
                                         {
                                             <li class="chat-user chat__message__dt"
                                                 data-user-id="@user.Id"
-                                                onclick="selectUser(@user.Id, '@user.Name')"
+                                                onclick="openChat(@user.Id, '@user.Name')"
                                                 style="cursor: pointer;">
                                                 <div class="user-status">
                                                     <div class="user-avatar">
@@ -59,83 +58,49 @@
                                     }
                                 </ul>
                             </div>
-                            <div class="col-xl-8 col-lg-7 col-md-12">
-                                <div class="chatbox_right">
-                                    <div class="chat_header">
-                                        <div class="user-status" id="chatHeader" style="display: none;">
-                                            <div class="user-avatar">
-                                                <img src="" id="chatUserAvatar" alt="User Avatar">
-                                            </div>
-                                            <p class="user-status-title">
-                                                <span class="bold" id="chatUserName">Выберите пользователя</span>
-                                            </p>
-                                            <p class="user-status-tag online">Online</p>
-
-                                            <div class="user-status-time floaty eps_dots eps_dots5 more_dropdown">
-                                                <a href="#"><i class="uil uil-ellipsis-h"></i></a>
-                                                <div class="dropdown-content">
-                                                    <span><i class="uil uil-trash-alt"></i>Delete</span>
-                                                    <span><i class="uil uil-ban"></i>Block</span>
-                                                    <span><i class="uil uil-windsock"></i>Report</span>
-                                                    <span><i class="uil uil-volume-mute"></i>Mute</span>
+                            @if (Model.SelectedUserId.HasValue)
+                            {
+                                <div class="col-xl-8 col-lg-7 col-md-12">
+                                    <div class="chatbox_right">
+                                        <div class="chat_header">
+                                            <div class="user-status" id="chatHeader">
+                                                <div class="user-avatar">
+                                                    <img src="@Url.Content($"~/assets/images/left-imgs/img-{Model.SelectedUserId}.jpg")" id="chatUserAvatar" alt="User Avatar">
                                                 </div>
+                                                <p class="user-status-title">
+                                                    <span class="bold" id="chatUserName">@Model.SelectedUserName</span>
+                                                </p>
+                                                <p class="user-status-tag online">Online</p>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="messages-line simplebar-content-wrapper2 scrollstyle_4">
-                                        <div id="messageArea" class="mCustomScrollbar">
-                                            @if (Model.Messages != null && Model.Messages.Any())
-                                            {
-                                                foreach (var msg in Model.Messages)
-                                                {
-                                                    if (msg.IsMine)
-                                                    {
-                                                        <div class="main-message-box ta-right" style="float: right;">
-                                                            <div class="message-dt">
-                                                                <div class="message-inner-dt">
-                                                                    <p>@msg.Content</p>
-                                                                </div>
-                                                                <span>@msg.SentAt</span>
-                                                            </div>
-                                                        </div>
-                                                    }
-                                                    else
-                                                    {
-                                                        <div class="main-message-box st3">
-                                                            <div class="message-dt st3">
-                                                                <div class="message-inner-dt">
-                                                                    <p>@msg.Content</p>
-                                                                </div>
-                                                                <span>@msg.SentAt</span>
-                                                            </div>
-                                                        </div>
-                                                    }
-                                                }
-                                            }
-                                            else
-                                            {
-                                                <p id="noMessages">Сообщений пока нет</p>
-                                            }
+                                        <div class="messages-line simplebar-content-wrapper2 scrollstyle_4">
+                                            <div id="messageArea" class="mCustomScrollbar"></div>
                                         </div>
-                                    </div>
-
-                                    <!-- Форма отправки -->
-                                    <div id="chatInput" class="message-send-area" style="display: none;" data-recipient="">
-                                        <form onsubmit="sendMessage(event)">
-                                            <div class="mf-field">
-                                                <div class="ui search focus input__msg">
-                                                    <div class="ui left icon input swdh19">
-                                                        <input class="prompt srch_explore" type="text" id="chat-widget-message-text-2" name="chat-widget-message-text-2" placeholder="Write a message...">
+                                        <div id="chatInput" class="message-send-area" data-recipient="@Model.SelectedUserId">
+                                            <form onsubmit="sendMessage(event)">
+                                                <div class="mf-field">
+                                                    <div class="ui search focus input__msg">
+                                                        <div class="ui left icon input swdh19">
+                                                            <input type="text" id="messageInput" placeholder="Write a message...">
+                                                        </div>
                                                     </div>
+                                                    <button class="add_msg" type="submit">
+                                                        <i class="uil uil-message"></i>
+                                                    </button>
                                                 </div>
-                                                <button class="add_msg" type="submit">
-                                                    <i class="uil uil-message"></i>
-                                                </button>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            }
+                            else
+                            {
+                                <div class="col-xl-8 col-lg-7 col-md-12">
+                                    <div class="chatbox_right">
+                                        <p>Выберите пользователя для начала чата</p>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
