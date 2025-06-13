@@ -16,87 +16,18 @@
 							<a href="LiveStreams" class="see150">See all</a>
 							<div class="la5lo1">
 								<div class="owl-carousel live_stream owl-theme">
-									<div class="item">
-										<div class="stream_1">
-											<a href="LiveStream" class="stream_bg">
-												<img src="~/assets/images/left-imgs/img-1.jpg" alt="">
-												<h4>John Doe</h4>
-												<p>live<span></span></p>
-											</a>
+									@foreach (var subStream in ViewBag.AllStreamers)
+									{
+										<div class="item">
+											<div class="stream_1">
+												<a asp-controller="LiveStream" asp-action="Index" asp-route-Id="@subStream.Id" class="stream_bg">
+													<img src="@Url.Content($"~/assets/images/left-imgs/img-{subStream.Avatar}.jpg")" alt="">
+													<h4>@subStream.Name</h4>
+													<p>live<span></span></p>
+												</a>
+											</div>
 										</div>
-									</div>
-									<div class="item">
-										<div class="stream_1">
-											<a href="LiveStream" class="stream_bg">
-												<img src="~/assets/images/left-imgs/img-2.jpg" alt="">
-												<h4>Jassica</h4>
-												<p>live<span></span></p>
-											</a>
-										</div>
-									</div>
-									<div class="item">
-										<div class="stream_1">
-											<a href="LiveStream" class="stream_bg">
-												<img src="~/assets/images/left-imgs/img-9.jpg" alt="">
-												<h4>Edututs+</h4>
-												<p>live<span></span></p>
-											</a>
-										</div>
-									</div>
-									<div class="item">
-										<div class="stream_1">
-											<a href="LiveStream" class="stream_bg">
-												<img src="~/assets/images/left-imgs/img-3.jpg" alt="">
-												<h4>Joginder Singh</h4>
-												<p>live<span></span></p>
-											</a>
-										</div>
-									</div>
-									<div class="item">
-										<div class="stream_1">
-											<a href="LiveStream" class="stream_bg">
-												<img src="~/assets/images/left-imgs/img-4.jpg" alt="">
-												<h4>Zoena</h4>
-												<p>live<span></span></p>
-											</a>
-										</div>
-									</div>
-									<div class="item">
-										<div class="stream_1">
-											<a href="LiveStream" class="stream_bg">
-												<img src="~/assets/images/left-imgs/img-5.jpg" alt="">
-												<h4>Albert Dua</h4>
-												<p>live<span></span></p>
-											</a>
-										</div>
-									</div>
-									<div class="item">
-										<div class="stream_1">
-											<a href="LiveStream" class="stream_bg">
-												<img src="~/assets/images/left-imgs/img-6.jpg" alt="">
-												<h4>Ridhima</h4>
-												<p>live<span></span></p>
-											</a>
-										</div>
-									</div>
-									<div class="item">
-										<div class="stream_1">
-											<a href="LiveStream" class="stream_bg">
-												<img src="~/assets/images/left-imgs/img-7.jpg" alt="">
-												<h4>Amritpal</h4>
-												<p>live<span></span></p>
-											</a>
-										</div>
-									</div>
-									<div class="item">
-										<div class="stream_1">
-											<a href="LiveStream" class="stream_bg">
-												<img src="~/assets/images/left-imgs/img-8.jpg" alt="">
-												<h4>Jimmy</h4>
-												<p>live<span></span></p>
-											</a>
-										</div>
-									</div>
+									}
 								</div>
 							</div>
 						</div>
@@ -502,7 +433,7 @@
 									<div class="live_icon"><i class="uil uil-kayak"></i></div>
 									<div class="live-content">
 										<p>Set up your channel and stream live to your students</p>
-										<button class="live_link" onclick="window.location.href = 'add_streaming';">Get Started</button>
+										<button class="live_link" onclick="window.location.href = 'AddStreaming'">Get Started</button>
 										<span class="livinfo">Info : This feature only for 'Instructors'.</span>
 									</div>
 								</div>
@@ -510,7 +441,7 @@
 							<div class="get1452">
 								<h4>Get personalized recommendations</h4>
 								<p>Answer a few questions for your top picks</p>
-								<button class="Get_btn" onclick="window.location.href = '#';">Get Started</button>
+								<button class="Get_btn" onclick="window.location.href= '';">Get Started</button>
 							</div>
 							<div class="fcrse_3">
 								<div class="cater_ttle">

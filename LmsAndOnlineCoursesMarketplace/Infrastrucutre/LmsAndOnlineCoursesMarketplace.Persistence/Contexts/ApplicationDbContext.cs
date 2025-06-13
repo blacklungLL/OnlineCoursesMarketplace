@@ -12,6 +12,8 @@ public class ApplicationDbContext: IdentityDbContext
     public DbSet<UserSubscription> UserSubscriptions { get; set; }
     public DbSet<CourseReaction> CourseReactions { get; set; }
     public DbSet<ChatMessage> ChatMessages { get; set; }
+    public DbSet<LiveStream> LiveStreams { get; set; }
+    public DbSet<LiveStreamReactions> LiveStreamReactions { get; set; }
     
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -77,6 +79,20 @@ public class ApplicationDbContext: IdentityDbContext
             .HasOne(m => m.Recipient)
             .WithMany(u => u.ReceivedMessages)
             .HasForeignKey(m => m.RecipientId);
+        
+        modelBuilder.Entity<LiveStreamReactions>()
+            .HasKey(r => new { r.StreamId, r.UserId });
+        
+        modelBuilder.Entity<LiveStreamReactions>()
+            .HasOne<User>(r => r.User)
+            .WithMany(u => u.LiveStreamReactions)
+            .HasForeignKey(r => r.UserId)
+            .OnDelete(DeleteBehavior.Cascade); // или.Restrict
+
+        modelBuilder.Entity<LiveStreamReactions>()
+            .HasOne<LiveStream>(r => r.LiveStream)
+            .WithMany(s => s.Reactions)
+            .HasForeignKey(r => r.StreamId);
         
     }
 }

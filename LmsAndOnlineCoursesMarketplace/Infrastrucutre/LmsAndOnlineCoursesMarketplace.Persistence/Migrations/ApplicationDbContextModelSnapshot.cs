@@ -165,6 +165,73 @@ namespace LmsAndOnlineCoursesMarketplace.Persistence.Migrations
                     b.ToTable("CourseReactions");
                 });
 
+            modelBuilder.Entity("LmsAndOnlineCoursesMarketplace.Domain.Entities.LiveStream", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("DislikesCnt")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("LikesCnt")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("VideoLink")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Views")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("LiveStreams");
+                });
+
+            modelBuilder.Entity("LmsAndOnlineCoursesMarketplace.Domain.Entities.LiveStreamReactions", b =>
+                {
+                    b.Property<int>("StreamId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsDislike")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsLike")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("StreamId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("StreamId", "UserId")
+                        .IsUnique();
+
+                    b.ToTable("LiveStreamReactions");
+                });
+
             modelBuilder.Entity("LmsAndOnlineCoursesMarketplace.Domain.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -501,6 +568,36 @@ namespace LmsAndOnlineCoursesMarketplace.Persistence.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("LmsAndOnlineCoursesMarketplace.Domain.Entities.LiveStream", b =>
+                {
+                    b.HasOne("LmsAndOnlineCoursesMarketplace.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("LmsAndOnlineCoursesMarketplace.Domain.Entities.LiveStreamReactions", b =>
+                {
+                    b.HasOne("LmsAndOnlineCoursesMarketplace.Domain.Entities.LiveStream", "LiveStream")
+                        .WithMany("Reactions")
+                        .HasForeignKey("StreamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LmsAndOnlineCoursesMarketplace.Domain.Entities.User", "User")
+                        .WithMany("LiveStreamReactions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LiveStream");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("LmsAndOnlineCoursesMarketplace.Domain.Entities.User", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
@@ -606,11 +703,18 @@ namespace LmsAndOnlineCoursesMarketplace.Persistence.Migrations
                     b.Navigation("UserCoursePurchases");
                 });
 
+            modelBuilder.Entity("LmsAndOnlineCoursesMarketplace.Domain.Entities.LiveStream", b =>
+                {
+                    b.Navigation("Reactions");
+                });
+
             modelBuilder.Entity("LmsAndOnlineCoursesMarketplace.Domain.Entities.User", b =>
                 {
                     b.Navigation("CourseReactions");
 
                     b.Navigation("Courses");
+
+                    b.Navigation("LiveStreamReactions");
 
                     b.Navigation("PurchasedCourses");
 

@@ -45,6 +45,18 @@ public class HomeController : Controller
             .ThenInclude(us => us.SubscribedTo)
             .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
         
+        var allStreamers = await _context.LiveStreams
+            .Include(s => s.User)
+            //.Where(s => s.UserId != currentUser.Id) // Исключаем себя
+            .Select(s => new
+            {
+                Id = s.Id,
+                Name = s.User.Name,
+                VideoLink = s.VideoLink,
+                Avatar = s.UserId
+            })
+            .ToListAsync();
+        
         var viewModel = new HomeVM
         {
             FeaturedCourses = courses,
@@ -74,6 +86,7 @@ public class HomeController : Controller
                     Id = us.SubscribedToId,
                     Name = us.SubscribedTo?.Name ?? "Unknown",
                 }).ToList() ?? new List<SubscriptionPreviewVM>();
+            ViewBag.AllStreamers = allStreamers;
         }
         
         return View(viewModel);

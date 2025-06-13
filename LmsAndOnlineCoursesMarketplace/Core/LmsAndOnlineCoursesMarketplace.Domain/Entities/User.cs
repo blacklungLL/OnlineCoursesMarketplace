@@ -21,6 +21,7 @@ public class User : BaseAuditableEntity
     public virtual ICollection<ChatMessage> ReceivedMessages { get; set; } = new List<ChatMessage>();
     public virtual ICollection<Course> Courses { get; set; }
     public virtual ICollection<CourseReaction> CourseReactions { get; set; } = new HashSet<CourseReaction>();
+    public virtual ICollection<LiveStreamReactions> LiveStreamReactions { get; set; } = new HashSet<LiveStreamReactions>();
     public virtual ICollection<UserCoursePurchase> PurchasedCourses { get; set; }
     public virtual ICollection<UserSubscription> Subscribers { get; set; }
     public virtual ICollection<UserSubscription> Subscriptions { get; set; }
