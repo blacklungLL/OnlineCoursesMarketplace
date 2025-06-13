@@ -1,0 +1,39 @@
+@model LmsAndOnlineCoursesMarketplace.MVC.Models.LiveStream.LiveStreamVM
+
+<div class="wrapper">
+	<div class="sa4d25">
+		<div class="container-fluid">			
+			<div class="row justify-content-md-center">
+				<div class="col-lg-8 col-md-10">
+					<div class="section3125 stream_tabs">
+						<ul class="nav nav-tabs slive_tabs justify-content-center" id="myTab" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" id="add-streaming-tab" data-bs-toggle="tab" role="tab" aria-controls="add-straming" aria-selected="true">Add Video to stream</a>
+							</li>
+						</ul>
+						<div class="tab-content" id="myTabContent">
+							<div class="tab-pane fade show active" id="add-straming" role="tabpanel">
+								<div class="add_stream_content">
+									<h4 class="strm_title">Connect your live stream to the Live API</h4>
+									<div class="sf475">Use live-streaming software or a hardware encoder.</div>
+									<div class="stm_key">Preview your broadcast with a stream key or paired encoder.</div>
+									<div class="live_form">
+										<form method="post" asp-action="Index" asp-controller="AddStreaming">
+											<div class="group-form">
+												<label>Video URL*</label>
+												<input type="text" name="VideoSource" id="videoUrl" class="_dlor1" required />
+											</div>
+											<button type="submit" class="_145d1">
+												<i class="uil uil-video"></i> Go Live
+											</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>							
+					</div>							
+				</div>								
+			</div>
+		</div>
+	</div>
+</div>	
