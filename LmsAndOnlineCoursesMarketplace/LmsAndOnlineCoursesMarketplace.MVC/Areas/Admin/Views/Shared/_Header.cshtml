@@ -21,46 +21,46 @@
 	<div class="header_right">
 		<ul>
 			<li>
-				<a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="upload_btn" title="To Dashboard">To Dashboard</a>
+				<a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="upload_btn" title="To Dashboard">Create New Course</a>
 			</li>
 			<li>
-				<a asp-controller="ShoppingCart" asp-action="Index" class="option_links" title="cart"><i class='uil uil-shopping-cart-alt'></i><span class="noti_count">2</span></a>
+				<a asp-area="" asp-controller="ShoppingCart" asp-action="Index" class="option_links" title="cart"><i class='uil uil-shopping-cart-alt'></i><span class="noti_count">2</span></a>
 			</li>
 			<li>
-				<a asp-controller="Chats" asp-action="Index" class="option_links"><i class='uil uil-envelope-alt'></i><span class="noti_count">3</span></a>
+				<a asp-area="" asp-controller="Chats" asp-action="Index" class="option_links"><i class='uil uil-envelope-alt'></i><span class="noti_count">3</span></a>
 			</li>
 			<li class="profile-dropdown">
 				<a href="#" class="opts_account" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
 					<img src="@Url.Content($"~/assets/images/left-imgs/img-{ViewBag.CurrentUserId}.jpg")" alt="">
 				</a>
-					<div class="dropdown-menu dropdown_account drop-down dropdown-menu-end">
-						<div class="channel_my">
-							<div class="profile_link">
-								<img src="@Url.Content($"~/assets/images/left-imgs/img-{ViewBag.CurrentUserId}.jpg")" alt="">
-								<div class="pd_content">
-									<div class="rhte85">
-										<h6>@ViewBag.CurrentUserName</h6>
-										<div class="mef78" title="Verify">
-											<i class='uil uil-check-circle'></i>
-										</div>
+				<div class="dropdown-menu dropdown_account drop-down dropdown-menu-end">
+					<div class="channel_my">
+						<div class="profile_link">
+							<img src="@Url.Content($"~/assets/images/left-imgs/img-{ViewBag.CurrentUserId}.jpg")" alt="">
+							<div class="pd_content">
+								<div class="rhte85">
+									<h6>@ViewBag.CurrentUserName</h6>
+									<div class="mef78" title="Verify">
+										<i class='uil uil-check-circle'></i>
 									</div>
-									<span>@ViewBag.CurrentEmail</span>
-								</div>							
+								</div>
+								<span>@ViewBag.CurrentEmail</span>
 							</div>
-							<a asp-controller="Profile" asp-action="Index" class="dp_link_12">View Profile</a>						
 						</div>
-						<div class="night_mode_switch__btn">
-							<a href="#" id="night-mode" class="btn-night-mode">
-								<i class="uil uil-moon"></i> Night mode
-								<span class="btn-night-mode-switch">
+						<a asp-area="" asp-controller="Profile" asp-action="Index" class="dp_link_12">View Profile</a>
+					</div>
+					<div class="night_mode_switch__btn">
+						<a href="#" id="night-mode" class="btn-night-mode">
+							<i class="uil uil-moon"></i> Night mode
+							<span class="btn-night-mode-switch">
 									<span class="uk-switch-button"></span>
 								</span>
-							</a>
-						</div>
-						<a href="instructor_dashboard" class="item channel_item">Cursus dashboard</a>						
-						<a asp-controller="Settings" asp-action="Index" class="item channel_item">Settings</a>
-						<a asp-controller="Login" asp-action="Index" class="item channel_item">Sign Out</a>
+						</a>
 					</div>
+					<a href="instructor_dashboard" class="item channel_item">Cursus dashboard</a>
+					<a asp-area="" asp-controller="Settings" asp-action="Index" class="item channel_item">Settings</a>
+					<a asp-area="" asp-controller="Login" asp-action="Index" class="item channel_item">Sign Out</a>
+				</div>
 			</li>
 		</ul>
 	</div>

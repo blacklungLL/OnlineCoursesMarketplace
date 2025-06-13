@@ -66,8 +66,14 @@ app.MapStaticAssets();
 app.MapHub<ChatHub>("/chatHub");
 
 app.MapControllerRoute(
+        name: "areas",
+        pattern: "{area:exists}/{controller}/{action}/{id?}")
+    .WithStaticAssets();
+
+app.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
+
 
 app.Run();

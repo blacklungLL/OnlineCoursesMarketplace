@@ -1,0 +1,107 @@
+@model LmsAndOnlineCoursesMarketplace.MVC.Models.Profile.ProfileVM
+
+@{
+	ViewData["Title"] = "My Courses";
+}
+<div class="sa4d25">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="st_title"><i class="uil uil-book-alt"></i>Courses</h2>
+			</div>
+			<div class="col-md-12">
+				<div class="card_dash1">
+					<div class="card_dash_left1">
+						<i class="uil uil-book-alt"></i>
+						<h1>Jump Into Course Creation</h1>
+					</div>
+					<div class="card_dash_right1">
+						<button class="create_btn_dash" onclick="window.location.href = 'create_new_course';">Create
+							Your Course
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="my_courses_tabs">
+					<ul class="nav nav-pills my_crse_nav" id="pills-tab" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" id="pills-my-courses-tab" data-bs-toggle="pill"
+							   href="#pills-my-courses" role="tab" aria-controls="pills-my-courses"
+							   aria-selected="true"><i class="uil uil-book-alt"></i>My Courses</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="pills-my-purchases-tab" data-bs-toggle="pill"
+							   href="#pills-my-purchases" role="tab" aria-controls="pills-my-purchases"
+							   aria-selected="false"><i class="uil uil-download-alt"></i>My Purchases</a>
+						</li>
+					</ul>
+					<div class="tab-content" id="pills-tabContent">
+						<div class="tab-pane fade show active" id="pills-my-courses" role="tabpanel">
+							<div class="table-responsive mt-30">
+								<table class="table ucp-table">
+									<thead class="thead-s">
+									<tr>
+										<th class="text-center" scope="col">Item No.</th>
+										<th>Title</th>
+										<th class="text-center" scope="col">Rating</th>
+										<th class="text-center" scope="col">Category</th>
+										<th class="text-center" scope="col">Action</th>
+									</tr>
+									</thead>
+									@foreach (var course in Model.CreatedCourses)
+									{
+										<tbody>
+										<tr>
+											<td class="text-center">@course.Id</td>
+											<td>@course.Title</td>
+											<td class="text-center">@course.Rating</td>
+											<td class="text-center"><a href="#">@course.Category</a></td>
+											<td class="text-center">
+												<a href="#" title="Delete" class="gray-s"><i class="uil uil-trash-alt"></i></a>
+											</td>
+										</tr>
+										</tbody>
+									}
+								</table>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="pills-my-purchases" role="tabpanel">
+							<div class="table-responsive mt-30">
+								<table class="table ucp-table">
+									<thead class="thead-s">
+									<tr>
+										<th class="text-center" scope="col">Item No.</th>
+										<th class="cell-ta" scope="col">Title</th>
+										<th class="cell-ta" scope="col">Author</th>
+										<th class="cell-ta" scope="col">Category</th>
+										<th class="text-center" scope="col">Price</th>
+										<th class="text-center" scope="col">Actions</th>
+									</tr>
+									</thead>
+									@foreach (var purchasedCourse in Model.PurchasedCourses)
+									{
+										<tbody>
+										<tr>
+											<td class="text-center">@purchasedCourse.Id</td>
+											<td class="cell-ta">@purchasedCourse.Title</td>
+											<td class="cell-ta"><a href="#">@purchasedCourse.AuthorName</a></td>
+											<td class="cell-ta"><a href="#">@purchasedCourse.Category</a></td>
+											<td class="text-center">$@purchasedCourse.Price</td>
+											<td class="text-center">
+												<a href="#" title="Delete" class="gray-s"><i class="uil uil-trash-alt"></i></a>
+											</td>
+										</tr>
+										</tbody>
+									}
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

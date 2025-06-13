@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, shrink-to-fit=9">
+	<meta name="description" content="Gambolthemes">
+	<meta name="author" content="Gambolthemes">		
+	<title>@ViewData["Title"] - Admin Panel</title>
+		
+	<!-- Favicon Icon -->
+	<link rel="icon" type="image/png" href="~/assets/images/fav.png">
+		
+	<!-- Stylesheets -->
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,500' rel='stylesheet'>
+	<link href='~/assets/lib/unicons-2.0.1/css/unicons.css' rel='stylesheet'>
+	<link href="~/assets/css/vertical-responsive-menu1.min.css" rel="stylesheet">
+	<link href="~/assets/css/instructor-dashboard.css" rel="stylesheet">
+	<link href="~/assets/css/instructor-responsive.css" rel="stylesheet">
+	<link href="~/assets/css/night-mode.css" rel="stylesheet">
+		
+	<!-- Vendor Stylesheets -->
+	<link href="~/assets/lib/fontawesome-free/css/all.min.css" rel="stylesheet">
+	<link href="~/assets/lib/OwlCarousel/assets/owl.carousel.css" rel="stylesheet">
+	<link href="~/assets/lib/OwlCarousel/assets/owl.theme.default.min.css" rel="stylesheet">
+	<link href="~/assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="~/assets/lib/bootstrap-select/docs/docs/dist/css/bootstrap-select.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="~/assets/lib/semantic/semantic.min.css">		
+		
+</head>
+<body>
+@await Html.PartialAsync("_Header")
+@await Html.PartialAsync("_Sidebar");
+<div class="wrapper">
+	<main>
+		@RenderBody()
+	</main>
+	<footer class="footer mt-40">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="item_f1">
+						<a href="terms_of_use">Copyright Policy</a>
+						<a href="terms_of_use">Terms</a>
+						<a href="terms_of_use">Privacy Policy</a>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="footer_bottm">
+						<div class="row">
+							<div class="col-md-6">
+								<ul class="fotb_left">
+									<li>
+										<a href="/">
+											<div class="footer_logo">
+												<img src="~/assets/images/logo1.svg" alt="">
+											</div>
+										</a>
+									</li>
+									<li>
+										<p>© 2024 <strong>Cursus</strong>. All Rights Reserved.</p>
+									</li>
+								</ul>
+							</div>
+							<div class="col-md-6">
+								<div class="edu_social_links">
+									<a href="#"><i class="fab fa-facebook-f"></i></a>
+									<a href="#"><i class="fab fa-twitter"></i></a>
+									<a href="#"><i class="fab fa-google-plus-g"></i></a>
+									<a href="#"><i class="fab fa-linkedin-in"></i></a>
+									<a href="#"><i class="fab fa-instagram"></i></a>
+									<a href="#"><i class="fab fa-youtube"></i></a>
+									<a href="#"><i class="fab fa-pinterest-p"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/assets/js/jquery-3.7.1.min.js"></script>
+<script src="~/assets/js/bootstrap.bundle.min.js"></script>
+<script src="~/assets/lib/OwlCarousel/owl.carousel.js"></script>
+<script src="~/assets/lib/semantic/semantic.min.js"></script>
+<script src="~/assets/lib/bootstrap-select/docs/docs/dist/js/bootstrap-select.js"></script>
+<script src="~/assets/js/custom.js"></script>
+<script src="~/assets/js/night-mode.js"></script>
+<script src="~/assets/js/chat.js"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>

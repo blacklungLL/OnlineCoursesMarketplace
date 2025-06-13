@@ -117,9 +117,21 @@ public class ShoppingCartController : Controller
             TempData["Message"] = "Курс уже куплен";
             return RedirectToAction("Index", new { courseId = courseId });
         }
+        
+        int authorId = course.UserId;
+        
+        var author = await _context.Users
+            .FirstOrDefaultAsync(u => u.Id == authorId);
+        
+        if (author == null)
+        {
+            Console.Error.WriteLine($"Автор курса с ID {courseId} не найден");
+            return NotFound("Автор курса не найден");
+        }
 
         // Списываем баланс
         user.Balance -= course.Price;
+        author.Balance += course.Price;
 
         // Добавляем запись о покупке
         var purchase = new UserCoursePurchase
@@ -130,6 +142,7 @@ public class ShoppingCartController : Controller
 
         await _context.UserCoursePurchases.AddAsync(purchase);
         _context.Users.Update(user);
+        _context.Users.Update(author);
         await _context.SaveChangesAsync();
 
         TempData["SuccessMessage"] = $"Курс '{course.Title}' успешно куплен!";
