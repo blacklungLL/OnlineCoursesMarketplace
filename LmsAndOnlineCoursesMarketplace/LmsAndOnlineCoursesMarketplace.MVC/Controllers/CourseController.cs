@@ -3,6 +3,7 @@ using LmsAndOnlineCoursesMarketplace.MVC.Models.Course;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.OtherUserProfile;
 using LmsAndOnlineCoursesMarketplace.Persistence.Contexts;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,8 @@ public class CourseController : Controller
         _userManager = userManager;
         _context = context;
     }
-
+    
+    [Authorize]
     public async Task<IActionResult> Index(int id)
     {
         var course = await _context.Courses.FindAsync(id);

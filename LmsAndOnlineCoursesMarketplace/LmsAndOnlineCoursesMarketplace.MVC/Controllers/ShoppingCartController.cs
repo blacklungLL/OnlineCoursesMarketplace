@@ -24,6 +24,7 @@ public class ShoppingCartController : Controller
 
     // GET /ShoppingCart
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> Index(int? courseId)
     {
         var identityUser = await _userManager.GetUserAsync(User);

@@ -2,6 +2,7 @@ using LmsAndOnlineCoursesMarketplace.Domain.Entities;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.Chat;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.OtherUserProfile;
 using LmsAndOnlineCoursesMarketplace.Persistence.Contexts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ public class ChatsController : Controller
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> Index(int? userId)
     {
         var identityUser = await _userManager.GetUserAsync(User);

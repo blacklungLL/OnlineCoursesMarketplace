@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using LmsAndOnlineCoursesMarketplace.Persistence.Contexts;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.Profile;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
 {
@@ -22,6 +23,7 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var identityUser = await _userManager.GetUserAsync(User);

@@ -7,6 +7,7 @@ using LmsAndOnlineCoursesMarketplace.Persistence.Contexts;
 using Microsoft.AspNetCore.Identity;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.Profile;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.ShoppingCart;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
 {
@@ -20,7 +21,8 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
             _userManager = userManager;
             _context = context;
         }
-
+    
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var identityUser = await _userManager.GetUserAsync(User);

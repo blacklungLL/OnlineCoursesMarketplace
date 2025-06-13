@@ -5,6 +5,7 @@ using LmsAndOnlineCoursesMarketplace.Domain.Entities;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.Course;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.OtherUserProfile;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.Profile;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
 namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
@@ -22,6 +23,7 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
 
         [HttpGet]
         [Route("OtherUserProfile/{id}")]
+        [Authorize]
         public async Task<IActionResult> Index(int id)
         {
             var user = await _context.Users
