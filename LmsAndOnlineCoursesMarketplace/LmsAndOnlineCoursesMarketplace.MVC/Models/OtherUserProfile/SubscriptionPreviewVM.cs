@@ -6,6 +6,6 @@ public class SubscriptionPreviewVM
     public int UserId { get; set; }
     public string Name { get; set; } = string.Empty;
     public string JobPosition { get; set; } = string.Empty;
-    public int EnrollStudents { get; set; }
+    public int SubscribersCnt { get; set; }
     public int CourseCnt { get; set; }
 }

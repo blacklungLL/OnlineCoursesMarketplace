@@ -2,6 +2,7 @@ using LmsAndOnlineCoursesMarketplace.Domain.Entities;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.LiveStream;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.OtherUserProfile;
 using LmsAndOnlineCoursesMarketplace.Persistence.Contexts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,8 @@ public class LiveStreamController : Controller
         _userManager = userManager;
         _context = context;
     }
-
+    
+    [Authorize]
     public async Task<IActionResult> Index(int? id)
     {
         var stream = await _context.LiveStreams.FindAsync(id);

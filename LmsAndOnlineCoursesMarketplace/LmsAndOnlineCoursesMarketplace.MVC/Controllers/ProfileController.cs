@@ -71,7 +71,7 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
                         Id = u.Id,
                         Name = u.Name,
                         JobPosition = u.JobPosition,
-                        EnrollStudents = u.EnrollStudents,
+                        SubscribersCnt = u.SubscriptionsCnt,
                         CourseCnt = u.CoursesCnt
                     }).ToList() ?? new List<SubscriptionPreviewVM>()
             };
@@ -105,7 +105,7 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
                     Id = u.Id,
                     Name = u.Name,
                     JobPosition = u.JobPosition,
-                    EnrollStudents = u.EnrollStudents,
+                    SubscribersCnt = u.SubscriptionsCnt,
                     CourseCnt = u.CoursesCnt
                 })
                 .ToListAsync();

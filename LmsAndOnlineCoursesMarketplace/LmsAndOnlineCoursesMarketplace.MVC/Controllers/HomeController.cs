@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using LmsAndOnlineCoursesMarketplace.MVC.Models;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.Home;
 using LmsAndOnlineCoursesMarketplace.MVC.Models.OtherUserProfile;
-using LmsAndOnlineCoursesMarketplace.MVC.Models.Profile;
 using LmsAndOnlineCoursesMarketplace.Persistence.Contexts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
