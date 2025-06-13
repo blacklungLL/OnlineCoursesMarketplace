@@ -60,7 +60,12 @@
 											<td class="text-center">@course.Rating</td>
 											<td class="text-center"><a href="#">@course.Category</a></td>
 											<td class="text-center">
-												<a href="#" title="Delete" class="gray-s"><i class="uil uil-trash-alt"></i></a>
+												<form asp-action="DeleteCourse" method="post">
+													<input type="hidden" name="courseId" value="@course.Id" />
+													<button type="submit" title="Delete" class="gray-s">
+														<i class="uil uil-trash-alt"></i>
+													</button>
+												</form>
 											</td>
 										</tr>
 										</tbody>
@@ -91,7 +96,12 @@
 											<td class="cell-ta"><a href="#">@purchasedCourse.Category</a></td>
 											<td class="text-center">$@purchasedCourse.Price</td>
 											<td class="text-center">
-												<a href="#" title="Delete" class="gray-s"><i class="uil uil-trash-alt"></i></a>
+												<form asp-action="RefundCourse" method="post">
+													<input type="hidden" name="courseId" value="@purchasedCourse.Id" />
+													<button type="submit" title="Delete" class="gray-s">
+														<i class="uil uil-trash-alt"></i>
+													</button>
+												</form>
 											</td>
 										</tr>
 										</tbody>

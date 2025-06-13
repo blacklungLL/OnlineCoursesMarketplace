@@ -102,4 +102,101 @@ public class CoursesController: Controller
         
         return View(model);
     }
+    
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteCourse(int courseId)
+    {
+        var identityUser = await _userManager.GetUserAsync(User);
+        if (identityUser == null) return Challenge();
+
+        var currentUser = await _context.Users
+            .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
+
+        if (currentUser == null) return NotFound();
+
+        var course = await _context.Courses
+            .FirstOrDefaultAsync(c => c.Id == courseId);
+
+        if (course == null)
+            return NotFound();
+
+        if (course.UserId != currentUser.Id)
+        {
+            TempData["Message"] = "You cannot delete foreign course";
+            return RedirectToAction("Index");
+        }
+
+        var purchases = await _context.UserCoursePurchases
+            .Include(up => up.User)
+            .Where(up => up.CourseId == courseId)
+            .ToListAsync();
+
+        var purchasers = purchases.Select(p => p.User).ToList();
+
+        foreach (var purchaser in purchasers)
+        {
+            purchaser.Balance += course.Price;
+            _context.Users.Update(purchaser);
+        }
+
+        currentUser.Balance -= course.Price * purchasers.Count;
+        _context.Users.Update(currentUser);
+
+        _context.UserCoursePurchases.RemoveRange(purchases);
+
+        _context.Courses.Remove(course);
+
+        await _context.SaveChangesAsync();
+
+        TempData["SuccessMessage"] = $"Course '{course.Title}' was deleted. {purchasers.Count} users got refund";
+
+        return RedirectToAction("Index", "Courses");
+    }
+    
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> RefundCourse(int courseId)
+    {
+        var identityUser = await _userManager.GetUserAsync(User);
+        if (identityUser == null) return Challenge();
+
+        var currentUser = await _context.Users
+            .Include(u => u.Courses)
+            .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
+
+        if (currentUser == null) return NotFound();
+
+        var course = await _context.Courses
+            .FirstOrDefaultAsync(c => c.Id == courseId);
+
+        if (course == null) return NotFound();
+
+        var purchase = await _context.UserCoursePurchases
+            .FirstOrDefaultAsync(up => up.UserId == currentUser.Id && up.CourseId == courseId);
+
+        if (purchase == null)
+        {
+            TempData["Message"] = "You did not buy this course.";
+            return RedirectToAction("Index");
+        }
+
+        currentUser.Balance += course.Price;
+        _context.Users.Update(currentUser);
+
+        var author = await _context.Users
+            .FirstOrDefaultAsync(u => u.Id == course.UserId);
+
+        if (author != null)
+        {
+            author.Balance -= course.Price;
+            _context.Users.Update(author);
+        }
+
+        _context.UserCoursePurchases.Remove(purchase);
+        await _context.SaveChangesAsync();
+
+        TempData["SuccessMessage"] = $"Course '{course.Title}' Was deleted. You were returned {course.Price}$";
+        return RedirectToAction("Index", "Courses");
+    }
 }
