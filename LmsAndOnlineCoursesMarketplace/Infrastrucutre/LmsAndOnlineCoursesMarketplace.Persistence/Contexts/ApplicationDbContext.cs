@@ -87,7 +87,7 @@ public class ApplicationDbContext: IdentityDbContext
             .HasOne<User>(r => r.User)
             .WithMany(u => u.LiveStreamReactions)
             .HasForeignKey(r => r.UserId)
-            .OnDelete(DeleteBehavior.Cascade); // или.Restrict
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<LiveStreamReactions>()
             .HasOne<LiveStream>(r => r.LiveStream)

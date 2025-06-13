@@ -58,7 +58,7 @@ public class AuthController : Controller
 
         if (IsSuccess)
         {
-            returnUrl ??= Url.Content("~/"); // Если returnUrl не указан, перенаправляем на главную страницу
+            returnUrl ??= Url.Content("~/");
             return LocalRedirect(returnUrl);
         }
 

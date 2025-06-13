@@ -87,7 +87,6 @@ public class AddStreamingController: Controller
         }
         else
         {
-            // Это не YouTube → сохраняем как есть
             videoEmbedUrl = model.VideoSource.Trim();
         }
 
@@ -124,7 +123,6 @@ public class AddStreamingController: Controller
         {
             var uri = new Uri(input.Trim());
 
-            // Проверяем, это YouTube?
             if (uri.Host == "www.youtube.com" || uri.Host == "youtube.com")
             {
                 // Извлекаем ID из параметров
@@ -132,12 +130,10 @@ public class AddStreamingController: Controller
                 return query["v"];
             }
 
-            // Если это не YouTube → возвращаем null
             return input;
         }
         catch (UriFormatException)
         {
-            // Если не валидный URL → возможно, это просто ID или мусор
             return input;
         }
     }
