@@ -17,13 +17,17 @@ public class ChatHub : Hub
         _userManager = userManager;
     }
 
-    // Загрузка истории
-    public async Task LoadChat(int recipientId)
+    // Подключаем пользователя к группе чата
+    public async Task JoinAndLoad(int recipientId)
     {
         var identityUser = await _userManager.GetUserAsync(Context.User);
         var currentUser = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
 
         if (currentUser == null) return;
+
+        string groupName = $"chat_{Math.Min(currentUser.Id, recipientId)}_{Math.Max(currentUser.Id, recipientId)}";
+
+        await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
 
         var messages = await _context.ChatMessages
             .Where(m =>
@@ -43,38 +47,36 @@ public class ChatHub : Hub
         await Clients.Client(Context.ConnectionId).SendAsync("LoadMessages", messages, recipientId);
     }
 
-    // Отправка нового сообщения
+    // Отправка нового сообщения через группу
     public async Task SendPrivateMessage(string recipientId, string message)
     {
         var identityUser = await _userManager.GetUserAsync(Context.User);
         var currentUser = await _context.Users.FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
 
-        if (currentUser == null) return;
+        if (currentUser == null || !int.TryParse(recipientId, out int recipientUserId)) return;
 
         var chatMessage = new ChatMessage
         {
             Content = message,
             SenderId = currentUser.Id,
-            RecipientId = int.Parse(recipientId),
+            RecipientId = recipientUserId,
             SentAt = DateTime.UtcNow
         };
 
+        string groupName = $"chat_{Math.Min(currentUser.Id, recipientUserId)}_{Math.Max(currentUser.Id, recipientUserId)}";
+
+        Console.WriteLine($"Sending message to group: {groupName}");
+        
+        await Clients.Group($"chat_{Math.Min(currentUser.Id, recipientUserId)}_{Math.Max(currentUser.Id, recipientUserId)}")
+            .SendAsync("ReceiveMessage", new
+            {
+                SenderId = currentUser.Id,
+                Name = currentUser.Name,
+                isMine = true,
+            }, message, chatMessage.SentAt.ToString("yyyy-MM-ddTHH:mm:ss"));
+        
+        Console.WriteLine($"отправлено to group: {groupName}");
         await _context.ChatMessages.AddAsync(chatMessage);
         await _context.SaveChangesAsync();
-
-        // Отправляем себе и собеседнику
-        await Clients.Client(Context.ConnectionId).SendAsync("ReceiveMessage", new
-        {
-            Id = currentUser.Id,
-            Name = currentUser.Name,
-            isMine = true
-        }, message, chatMessage.SentAt.ToString("yyyy-MM-ddTHH:mm:ss"));
-
-        await Clients.User(recipientId).SendAsync("ReceiveMessage", new
-        {
-            Id = currentUser.Id,
-            Name = currentUser.Name,
-            isMine = false
-        }, message, chatMessage.SentAt.ToString("yyyy-MM-ddTHH:mm:ss"));
     }
 }

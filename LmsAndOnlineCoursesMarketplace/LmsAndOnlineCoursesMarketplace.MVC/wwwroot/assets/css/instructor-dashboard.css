@@ -3161,7 +3161,9 @@ i.icon8 {
 	float: left;
 	width: auto;
 	padding-left: 20px;
+    margin-bottom: 10px;
 }
+
 
 .main-message-box.ta-right {
 	float: right;
@@ -3174,13 +3176,16 @@ i.icon8 {
 }
 
 .main-message-box.ta-right .message-dt {
+    float: right;
 	padding-left: 20px;
 	padding-right: 20px;
+    margin-bottom: 10px;
 }
 
 .main-message-box.ta-right .message-dt > span {
 	float: right;
 	width: auto;
+    padding: 5px;
 }
 
 .message-inner-dt {
@@ -3216,7 +3221,7 @@ i.icon8 {
 
 .message-inner-dt > p {
 	float: right;
-	width: 60%;
+	width: auto;
 	background-color: #ed2a26;
 	font-size: 14px;
 	font-family: 'Roboto', sans-serif;
@@ -3266,7 +3271,7 @@ i.icon8 {
 }
 
 .input__msg {
-    width: 89%;
+    width: 80%;
     float: left;
 }
 
@@ -3281,7 +3286,7 @@ i.icon8 {
 	color: #fff;
 	background: #ed2a26;
 	height: 40px;
-	float: left;
+	float: right;
 }
 
 .mf-field .add_msg:hover {

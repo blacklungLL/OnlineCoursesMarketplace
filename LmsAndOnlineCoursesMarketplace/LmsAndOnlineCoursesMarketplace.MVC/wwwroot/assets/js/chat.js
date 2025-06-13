@@ -1,4 +1,4 @@
-// Подключаемся к SignalR Hub'у
+// Подключение к SignalR Hub'у
 const connection = new signalR.HubConnectionBuilder()
     .withUrl("/chatHub")
     .build();
@@ -9,21 +9,31 @@ function getURLParameter(name) {
 }
 
 // Подписываемся на событие получения новых сообщений
+console.log("Подписка на событие ReceiveMessage...");
 connection.on("ReceiveMessage", function (from, message, timestamp) {
+    console.log("Получено событие ReceiveMessage:", from, message, timestamp);
+    console.log(from.senderId.toString());
     const recipientId = document.getElementById('chatInput')?.dataset.recipient;
+    if (!recipientId) return;
+    
+    currentUserId = recipientId;
+    
+    const isMyMessage = from.senderId !== recipientId;
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get("userId");
 
-    // Показываем только если это наш собеседник
-    if (!recipientId || from.Id !== parseInt(recipientId)) return;
-
-    addMessageToChat(message, from, timestamp);
+    addMessageToChat(message, {
+        ...from,
+        isMine: isMyMessage
+    }, timestamp);
 });
 
-// Загружаем историю чата
+// Загружаем историю чата через SignalR
 connection.on("LoadMessages", function (messages, recipientId) {
     const msgArea = document.getElementById('messageArea');
     if (!msgArea) return;
 
-    msgArea.innerHTML = ''; // Очищаем предыдущие сообщения
+    msgArea.innerHTML = '';
 
     messages.forEach(msg => {
         const div = document.createElement('div');
@@ -54,24 +64,7 @@ connection.on("LoadMessages", function (messages, recipientId) {
     msgArea.scrollTop = msgArea.scrollHeight;
 });
 
-// Подключаемся к SignalR и загружаем чат
-(async () => {
-    try {
-        await connection.start();
-        console.log("Connected to SignalR Hub");
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const userId = urlParams.get("userId");
-
-        if (userId) {
-            await connection.invoke("LoadChat", parseInt(userId));
-        }
-    } catch (err) {
-        console.error("SignalR Error:", err.toString());
-    }
-})();
-
-// Отправляем новое сообщение
+// Отправка нового сообщения
 function sendMessage(e) {
     e.preventDefault();
     const input = document.getElementById('messageInput');
@@ -85,16 +78,17 @@ function sendMessage(e) {
         .catch(err => console.error("Ошибка отправки:", err));
 }
 
-// Добавляем сообщение в интерфейс
+// Добавление сообщения в интерфейс
 function addMessageToChat(message, from, timestamp) {
     const msgArea = document.getElementById('messageArea');
     if (!msgArea) return;
 
-    const isMine = from.isMine; // ← получаем напрямую из SignalR
-
     const wrapperDiv = document.createElement('div');
 
-    if (isMine) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get("userId");
+
+    if (userId !== from.senderId.toString()) {
         wrapperDiv.className = 'main-message-box ta-right';
         wrapperDiv.innerHTML = `
             <div class="message-dt">
@@ -110,7 +104,7 @@ function addMessageToChat(message, from, timestamp) {
                 <div class="message-inner-dt">
                     <p>${message}</p>
                 </div>
-                <span>${new Date(timestamp).toLocaleTimeString()}</span>
+                <span${new Date(timestamp).toLocaleTimeString()}</span>
             </div>`;
     }
 
@@ -118,27 +112,54 @@ function addMessageToChat(message, from, timestamp) {
     msgArea.scrollTop = msgArea.scrollHeight;
 }
 
-// Открываем чат с пользователем
 async function openChat(userId, userName) {
     const chatInput = document.getElementById('chatInput');
     const chatUserName = document.getElementById('chatUserName');
     const chatUserAvatar = document.getElementById('chatUserAvatar');
 
+    console.log("chatInput элемент:", chatInput ? "Найден" : "Не найден");
+    
     if (!chatInput || !chatUserName || !chatUserAvatar) {
         window.location.href = `/Chats?userId=${userId}`;
         return;
     }
 
     chatInput.setAttribute('data-recipient', userId);
+    console.log('chatInput:', chatInput);
     chatInput.style.display = 'flex';
     chatUserAvatar.src = `/assets/images/left-imgs/img-${userId}.jpg`;
     chatUserName.innerText = `Чат с ${userName}`;
 
+    document.getElementById('chatHeader').style.display = 'block';
+
     try {
-        await connection.invoke('LoadChat', userId);
+        await connection.invoke("JoinAndLoad", userId);
     } catch (e) {
         console.error("Ошибка загрузки чата:", e);
     }
 
     history.pushState({ userId }, '', `/Chats?userId=${userId}`);
 }
+
+(async () => {
+    try {
+        await connection.start();
+        console.log("SignalR подключён");
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get("userId");
+
+        if (userId) {
+            await connection.invoke("JoinAndLoad", parseInt(userId));
+        }
+    } catch (err) {
+        console.error("SignalR Error:", err.toString());
+    }
+})();
+
+connection.onreconnected(() => {
+    const userId = getURLParameter("userId");
+    if (userId) {
+        connection.invoke("JoinAndLoad", parseInt(userId));
+    }
+});
