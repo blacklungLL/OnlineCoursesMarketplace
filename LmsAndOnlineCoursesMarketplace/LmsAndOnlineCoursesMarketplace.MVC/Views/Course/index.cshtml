@@ -65,10 +65,7 @@
                                 </div>
                                 <ul class="_215b31">
                                     <li>
-                                        <button type="submit" class="btn_adcart">Add to Cart</button>
-                                    </li>
-                                    <li>
-                                        <a class="btn_buy"
+                                        <a class="btn_buy btn btn-danger"
                                            asp-controller="ShoppingCart"
                                            asp-action="Index"
                                            asp-route-courseId="@Model.Id">
@@ -122,9 +119,6 @@
                                             <i class="uil uil-thumbs-down"></i><span>@Model.DislikesCnt</span>
                                         </button>
                                     </form>
-                                </li>
-                                <li>
-                                    <a href="#" class="lkcm152"><i class="uil uil-share-alt"></i><span>@Model.SharedCnt</span></a>
                                 </li>
                             </ul>
                         </div>

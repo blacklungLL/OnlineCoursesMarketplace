@@ -15,85 +15,15 @@
                     </a>
                 </li>
                 <li class="menu--item">
-                    <a href="explore" class="menu--link" title="Explore">
-                        <i class='uil uil-search menu--icon'></i>
-                        <span class="menu--label">Explore</span>
+                    <a asp-controller="Chats" asp-action="Index" class="menu--link" title="Explore">
+                        <i class='uil uil-envelope-alt menu--icon'></i>
+                        <span class="menu--label">Chats</span>
                     </a>
                 </li>
-                <li class="menu--item menu--item__has_sub_menu">
-                    <label class="menu--link" title="Categories">
-                        <i class='uil uil-layers menu--icon'></i>
-                        <span class="menu--label">Categories</span>
-                    </label>
-                    <ul class="sub_menu">
-                        <li class="sub_menu--item">
-                            <a href="#" class="sub_menu--link">Development</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="#" class="sub_menu--link">Business</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="#" class="sub_menu--link">Finance & Accounting</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="#" class="sub_menu--link">IT & Software</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="#" class="sub_menu--link">Office Productivity</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="#" class="sub_menu--link">Personal Development</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="#" class="sub_menu--link">Design</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="#" class="sub_menu--link">Marketing</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="#" class="sub_menu--link">Lifestyle</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="#" class="sub_menu--link">Photography</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="#" class="sub_menu--link">Health & Fitness</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="#" class="sub_menu--link">Music</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="#" class="sub_menu--link">Teaching & Academics</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="menu--item  menu--item__has_sub_menu">
-                    <label class="menu--link" title="Tests">
-                        <i class='uil uil-clipboard-alt menu--icon'></i>
-                        <span class="menu--label">Tests</span>
-                    </label>
-                    <ul class="sub_menu">
-                        <li class="sub_menu--item">
-                            <a href="certification_center" class="sub_menu--link">Certification Center</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="certification_start_form" class="sub_menu--link">Certification Fill Form</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="certification_test_view" class="sub_menu--link">Test View</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="certification_test__result" class="sub_menu--link">Test Result</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="student_my_certificates" class="sub_menu--link">My Certification</a>
-                        </li>
-                    </ul>
-                </li>
                 <li class="menu--item">
-                    <a href="saved_courses" class="menu--link" title="Saved Courses">
-                        <i class="uil uil-heart-alt menu--icon"></i>
-                        <span class="menu--label">Saved Courses</span>
+                    <a asp-controller="ShoppingCart" asp-action="Index" class="menu--link" title="Saved Courses">
+                        <i class="uil uil-shopping-cart-alt menu--icon"></i>
+                        <span class="menu--label">Shopping Cart</span>
                     </a>
                 </li>
                 <li class="menu--item  menu--item__has_sub_menu">
@@ -103,61 +33,16 @@
                     </label>
                     <ul class="sub_menu">
                         <li class="sub_menu--item">
-                            <a href="about_us" class="sub_menu--link">About</a>
+                            <a asp-controller="Login" asp-action="Index" class="sub_menu--link">Login</a>
                         </li>
                         <li class="sub_menu--item">
-                            <a asp-controller="Login" asp-action="Index" class="sub_menu--link">Sign In</a>
+                            <a asp-controller="Registration" asp-action="Index" class="sub_menu--link">Registration</a>
                         </li>
                         <li class="sub_menu--item">
-                            <a asp-controller="Registration" asp-action="Index" class="sub_menu--link">Sign Up</a>
+                            <a asp-area="Admin" asp-controller="Courses" asp-action="Index" class="sub_menu--link">View your courses</a>
                         </li>
                         <li class="sub_menu--item">
-                            <a href="membership" class="sub_menu--link">Paid Membership</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a asp-controller="Course" asp-action="Index" class="sub_menu--link">Course Detail View</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="checkout_membership" class="sub_menu--link">Checkout</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="invoice" class="sub_menu--link">Invoice</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="career" class="sub_menu--link">Career</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="apply_job" class="sub_menu--link">Job Apply</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="our_blog" class="sub_menu--link">Our Blog</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="blog_single_view" class="sub_menu--link">Blog Detail View</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="company_details" class="sub_menu--link">Company Details</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="press" class="sub_menu--link">Press</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a asp-controller="LiveStream" asp-action="Index" class="sub_menu--link">Live Stream View</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="add_streaming" class="sub_menu--link">Add live Stream</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="search_result" class="sub_menu--link">Search Result</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="thank_you" class="sub_menu--link">Thank You</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="coming_soon" class="sub_menu--link">Coming Soon</a>
-                        </li>
-                        <li class="sub_menu--item">
-                            <a href="error_404" class="sub_menu--link">Error 404</a>
+                            <a asp-controller="AddStreaming" asp-action="Index" class="sub_menu--link">Add video to Stream</a>
                         </li>
                     </ul>
                 </li>
@@ -190,14 +75,14 @@
         </div>
         <div class="left_footer">
             <ul>
-                <li><a href="about_us">About</a></li>
-                <li><a href="press">Press</a></li>
-                <li><a href="contact_us">Contact Us</a></li>
-                <li><a href="coming_soon">Advertise</a></li>
-                <li><a href="coming_soon">Developers</a></li>
-                <li><a href="terms_of_use">Copyright</a></li>
-                <li><a href="terms_of_use">Privacy Policy</a></li>
-                <li><a href="terms_of_use">Terms</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Advertise</a></li>
+                <li><a href="#">Developers</a></li>
+                <li><a href="#">Copyright</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms</a></li>
             </ul>
             <div class="left_footer_content">
                 <p>© 2024 <strong>Cursus</strong>. All Rights Reserved.</p>
