@@ -16,7 +16,7 @@
 						<h1>Jump Into Course Creation</h1>
 					</div>
 					<div class="card_dash_right1">
-						<button class="create_btn_dash" onclick="window.location.href = 'create_new_course';">Create
+						<button class="create_btn_dash" onclick="window.location.href = 'CreateCourse';">Create
 							Your Course
 						</button>
 					</div>
@@ -48,6 +48,7 @@
 										<th>Title</th>
 										<th class="text-center" scope="col">Rating</th>
 										<th class="text-center" scope="col">Category</th>
+										<th class="text-center" scope="col">Price</th>
 										<th class="text-center" scope="col">Action</th>
 									</tr>
 									</thead>
@@ -59,6 +60,7 @@
 											<td>@course.Title</td>
 											<td class="text-center">@course.Rating</td>
 											<td class="text-center"><a href="#">@course.Category</a></td>
+											<td class="text-center"><a href="#">$@course.Price</a></td>
 											<td class="text-center">
 												<form asp-action="DeleteCourse" method="post">
 													<input type="hidden" name="courseId" value="@course.Id" />
@@ -115,3 +117,13 @@
 		</div>
 	</div>
 </div>
+<script src="~/assets/js/vertical-responsive-menu.min.js"></script>
+<script src="~/assets/js/jquery-3.7.1.min.js"></script>
+<script src="~/assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/assets/lib/OwlCarousel/owl.carousel.js"></script>
+<script src="~/assets/lib/bootstrap-select/docs/docs/dist/js/bootstrap-select.js"></script>
+<script src="~/assets/lib/semantic/semantic.min.js"></script>
+<script src="~/assets/js/custom1.js"></script>
+<script src="~/assets/js/night-mode.js"></script>
+<script src="~/assets/js/datepicker.min.js"></script>
+<script src="~/assets/js/i18n/datepicker.en.js"></script>
