@@ -35,13 +35,17 @@ public class CourseController : Controller
         _context.Courses.Update(course);
         await _context.SaveChangesAsync();
 
+        var courseAuthor = await _context.Courses
+            .Include(s => s.User)
+            .FirstOrDefaultAsync();
+
         var viewModel = new CourseVM
         {
             Id = course.Id,
             Title = course.Title,
             ShortDescription = course.ShortDescription,
             UserId = course.UserId,
-            AuthorName = course.User?.Name ?? "Unknown",
+            AuthorName = courseAuthor?.User.Name ?? "Unknown",
             ImageLink = course.ImageLink,
             Rating = course.Rating,
             RatingsCnt = course.RatingsCnt,

@@ -51,15 +51,15 @@
                                 </div>
                                 <div class="_215b06">
                                     <div class="_215b07">
-                                        <span><i class='uil uil-clock'></i></span>
+                                        <span><i class="uil uil-clock"></i></span>
                                         @Model.Duration
                                     </div>
                                     <div class="_215b08">
-                                        <span><i class='uil uil-tag-alt'></i></span>
+                                        <span><i class="uil uil-tag-alt"></i></span>
                                         @Model.Category
                                     </div>
                                     <div class="_215b08">
-                                        <span><i class='uil uil-dollar-sign'></i></span>
+                                        <span><i class="uil uil-dollar-sign"></i></span>
                                         $@Model.Price
                                     </div>
                                 </div>
@@ -94,8 +94,10 @@
                                     <img src="@Url.Content($"~/assets/images/left-imgs/img-{Model.Id}.jpg")" alt="">
                                 </div>
                                 <div class="user_cntnt">
-                                    <a asp-controller="OtherUserProfile" asp-action="Index" asp-route-id="@Model.Id" ><h4>@Model.AuthorName</h4></a>
-                                    <form asp-controller="OtherUserProfile" asp-action="Subscribe" asp-route-userId="@Model.Id" method="post">
+                                    <a asp-controller="OtherUserProfile" asp-action="Index" asp-route-id="@Model.Id">
+                                        <h4>@Model.AuthorName</h4></a>
+                                    <form asp-controller="OtherUserProfile" asp-action="Subscribe"
+                                          asp-route-userId="@Model.Id" method="post">
                                         <button type="submit" class="subscribe-btn">Subscribe</button>
                                     </form>
                                 </div>
@@ -107,14 +109,16 @@
                                     <a href="#" class="lkcm152"><i class="uil uil-eye"></i><span>@Model.Views</span></a>
                                 </li>
                                 <li>
-                                    <form asp-controller="Course" asp-action="Like" method="post" asp-route-id="@Model.Id">
+                                    <form asp-controller="Course" asp-action="Like" method="post"
+                                          asp-route-id="@Model.Id">
                                         <button type="submit" class="lkcm152">
                                             <i class="uil uil-thumbs-up"></i><span>@Model.LikesCnt</span>
                                         </button>
                                     </form>
                                 </li>
                                 <li>
-                                    <form asp-controller="Course" asp-action="Dislike" method="post" asp-route-id="@Model.Id">
+                                    <form asp-controller="Course" asp-action="Dislike" method="post"
+                                          asp-route-id="@Model.Id">
                                         <button type="submit" class="lkcm152">
                                             <i class="uil uil-thumbs-down"></i><span>@Model.DislikesCnt</span>
                                         </button>
@@ -126,12 +130,11 @@
                     <div class="course_tabs">
                         <nav>
                             <div class="nav nav-tabs tab_crse justify-content-center" id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="nav-about-tab" data-bs-toggle="tab" href="#nav-about" role="tab" aria-selected="true">About</a>
-                                <a class="nav-item nav-link" id="nav-courses-tab" data-bs-toggle="tab" href="#nav-courses" role="tab" aria-selected="false">Course Content</a>
-                                <a class="nav-item nav-link" id="nav-reviews-tab" data-bs-toggle="tab" href="#nav-reviews" role="tab" aria-selected="false">Reviews</a>
+                                <a class="nav-item nav-link active" id="nav-about-tab" data-bs-toggle="tab"
+                                   href="#nav-about" role="tab" aria-selected="true">About</a>
                             </div>
                         </nav>
-                    </div>    
+                    </div>
                 </div>
             </div>
         </div>
@@ -140,64 +143,19 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                        <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-about" role="tabpanel">
-                                <div class="_htg451">
-                                    <div class="_htg452">
-                                        <h3>Requirements</h3>
-                                        <div class="_htg455 mt-35">
-                                            @Model.Requirements
-                                        </div>
-                                    </div>
-                                    <div class="_htg452 mt-35">
-                                        <h3>Description</h3>
-                                        <div class="_htg455 mt-35">
-                                            @Model.Description
-                                        </div>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-about" role="tabpanel">
+                            <div class="_htg451">
+                                <div class="_htg452">
+                                    <h3>Requirements</h3>
+                                    <div class="_htg455 mt-35">
+                                        @Model.Requirements
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="nav-courses" role="tabpanel">
-                                <div class="crse_content">
-                                    <h3>Course content</h3>
-                                    <div class="_112456">
-                                        <ul class="accordion-expand-holder">
-                                            <li><span class="accordion-expand-all _d1452">Expand all</span></li>
-                                            <li><span class="_fgr123"> 0 lectures</span></li>
-                                            <li><span class="_fgr123">00:00</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="nav-reviews" role="tabpanel">
-                                <div class="student_reviews">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="review_right">
-                                                <div class="review_right_heading">
-                                                    <h3>Reviews</h3>
-                                                </div>
-                                            </div>
-                                            <div class="review_all120">
-                                                <div class="review_item">
-                                                    <div class="review_usr_dt">
-                                                        <img src="~/assets/images/left-imgs/img-1.jpg" alt="">
-                                                        <div class="rv1458">
-                                                            <h4 class="tutor_name1">John Doe</h4>
-                                                            <span class="time_145">2 hour ago</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="rating-box mt-20">
-                                                        <span class="rating-star full-star"></span>
-                                                        <span class="rating-star full-star"></span>
-                                                        <span class="rating-star full-star"></span>
-                                                        <span class="rating-star full-star"></span>
-                                                        <span class="rating-star half-star"></span>
-                                                    </div>
-                                                    <p class="rvds10">Nam gravida elit a velit rutrum, eget dapibus ex elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce lacinia, nunc sit amet tincidunt venenatis.</p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="_htg452 mt-35">
+                                    <h3>Description</h3>
+                                    <div class="_htg455 mt-35">
+                                        @Model.Description
                                     </div>
                                 </div>
                             </div>
@@ -207,6 +165,7 @@
             </div>
         </div>
     </div>
+</div>
 <!-- Body End -->
 
 <script src="~/assets/js/vertical-responsive-menu.min.js"></script>
