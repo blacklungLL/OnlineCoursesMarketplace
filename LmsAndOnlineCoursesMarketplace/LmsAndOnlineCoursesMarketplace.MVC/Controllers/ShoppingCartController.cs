@@ -22,7 +22,6 @@ public class ShoppingCartController : Controller
         _context = context;
     }
 
-    // GET /ShoppingCart
     [HttpGet]
     [Authorize]
     public async Task<IActionResult> Index(int? courseId)
@@ -87,7 +86,6 @@ public class ShoppingCartController : Controller
         return View(model);
     }
 
-    // POST /ShoppingCart/BuyNow
     [HttpPost("ShoppingCart/BuyNow")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> BuyNow(int courseId)
@@ -107,14 +105,14 @@ public class ShoppingCartController : Controller
 
         if (user.Balance < course.Price)
         {
-            TempData["Message"] = "Недостаточно средств";
+            TempData["Message"] = "Your balance is too low to buy this course.";
             return RedirectToAction("Index", new { courseId = courseId });
         }
 
         if (await _context.UserCoursePurchases
             .AnyAsync(up => up.UserId == user.Id && up.CourseId == courseId))
         {
-            TempData["Message"] = "Курс уже куплен";
+            TempData["Message"] = "You already bought this course";
             return RedirectToAction("Index", new { courseId = courseId });
         }
         
@@ -125,15 +123,13 @@ public class ShoppingCartController : Controller
         
         if (author == null)
         {
-            Console.Error.WriteLine($"Автор курса с ID {courseId} не найден");
-            return NotFound("Автор курса не найден");
+            Console.Error.WriteLine($"Author with ID {courseId} not found");
+            return NotFound("Author not found");
         }
 
-        // Списываем баланс
         user.Balance -= course.Price;
         author.Balance += course.Price;
 
-        // Добавляем запись о покупке
         var purchase = new UserCoursePurchase
         {
             UserId = user.Id,
@@ -145,7 +141,7 @@ public class ShoppingCartController : Controller
         _context.Users.Update(author);
         await _context.SaveChangesAsync();
 
-        TempData["SuccessMessage"] = $"Курс '{course.Title}' успешно куплен!";
+        TempData["SuccessMessage"] = $"Course '{course.Title}' was successfully bought!";
         return RedirectToAction("Index", "Profile");
     }
 }
