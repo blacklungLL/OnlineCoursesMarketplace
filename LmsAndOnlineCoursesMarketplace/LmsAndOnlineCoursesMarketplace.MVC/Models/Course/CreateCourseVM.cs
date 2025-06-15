@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-
 namespace LmsAndOnlineCoursesMarketplace.MVC.Models.Course;
 
 public class CreateCourseVM
@@ -37,7 +36,7 @@ public class CreateCourseVM
     [Range(0, double.MaxValue, ErrorMessage = "Price must be greater than zero")]
     public decimal Price { get; set; }
 
-    public string ImageLink { get; set; } = "/assets/images/courses/img-1.jpg";
+    public string ImageLink { get; set; } = "/assets/images/courses/img-15.jpg";
 
     public int LastUpdate { get; set; } = 2024;
     public decimal Rating { get; set; } = 4;

@@ -3,7 +3,10 @@
 @{
 	ViewData["Title"] = "Create Course";
 }
-
+@if (TempData["Message"] != null)
+{
+	<div class="alert alert-danger">@TempData["Message"]</div>
+}
 <form asp-action="Create" method="post">
 	<div class="sa4d25">
 		<div class="container">
@@ -33,7 +36,7 @@
 															<label>Course Title*</label>
 															<div class="ui input swdh19">
 																<input asp-for="Title" class="prompt srch_explore"
-																       placeholder="Course title here" maxlength="60" />
+																       placeholder="Course title here" maxlength="60" required/>
 																<i class="uil uil-edit icon icon8"></i>
 															</div>
 															<span asp-validation-for="Title" class="text-danger"></span>
@@ -45,7 +48,7 @@
 															<label>Short Description*</label>
 															<div class="ui form swdh30">
 																<div class="field">
-																	<textarea asp-for="ShortDescription" rows="3" placeholder="Short description..."></textarea>
+																	<textarea asp-for="ShortDescription" rows="3" placeholder="Short description..." required></textarea>
 																</div>
 															</div>
 															<span asp-validation-for="ShortDescription" class="text-danger"></span>
@@ -57,7 +60,7 @@
 															<label>Description*</label>
 															<div class="ui form swdh30">
 																<div class="field">
-																	<textarea asp-for="Description" rows="3" placeholder="Full course description..."></textarea>
+																	<textarea asp-for="Description" rows="3" placeholder="Full course description..." required></textarea>
 																</div>
 															</div>
 															<span asp-validation-for="Description" class="text-danger"></span>
@@ -69,7 +72,7 @@
 															<label>Requirements*</label>
 															<div class="ui form swdh30">
 																<div class="field">
-																	<textarea asp-for="Requirements" rows="3" placeholder="One requirement per line"></textarea>
+																	<textarea asp-for="Requirements" rows="3" placeholder="One requirement per line" required></textarea>
 																</div>
 															</div>
 														</div>
@@ -79,7 +82,7 @@
 														<div class="ui search focus mt-30 lbel25">
 															<label>Duration*</label>
 															<div class="ui left icon input swdh19">
-																<input asp-for="Duration" type="text" placeholder="Duration in hours (e.g., 38)" />
+																<input asp-for="Duration" type="text" placeholder="Duration in hours (e.g., 38)" required/>
 															</div>
 															<span asp-validation-for="Duration" class="text-danger"></span>
 														</div>
@@ -90,7 +93,7 @@
 														<div class="ui search focus mt-30 lbel25">
 															<label>Category*</label>
 															<div class="ui left icon input swdh19">
-																<input asp-for="Category" placeholder="Category" />
+																<input asp-for="Category" placeholder="Category" required/>
 															</div>
 															<span asp-validation-for="Category" class="text-danger"></span>
 														</div>
@@ -101,7 +104,7 @@
 														<div class="ui search focus mt-30 lbel25">
 															<label>Language*</label>
 															<div class="ui left icon input swdh19">
-																<input asp-for="Language" placeholder="Language" />
+																<input asp-for="Language" placeholder="Language" required />
 															</div>
 															<span asp-validation-for="Language" class="text-danger"></span>
 														</div>
@@ -114,7 +117,7 @@
 															<div class="col-lg-4 col-md-6 col-sm-6">
 																<div class="loc_group">
 																	<div class="ui left icon input swdh19">
-																		<input asp-for="Price" type="text" placeholder="$0" />
+																		<input asp-for="Price" type="text" placeholder="$0" required/>
 																	</div>
 																	<span class="slry-dt">USD</span>
 																</div>

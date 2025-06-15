@@ -189,7 +189,7 @@ public class CoursesController: Controller
 
         if (author != null)
         {
-            author.Balance -= course.Price;
+            author.Balance += course.Price;
             _context.Users.Update(author);
         }
 

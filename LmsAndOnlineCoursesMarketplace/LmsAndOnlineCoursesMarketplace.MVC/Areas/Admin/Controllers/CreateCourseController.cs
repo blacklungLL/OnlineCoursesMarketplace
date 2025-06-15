@@ -82,7 +82,8 @@ public class CreateCourseController: Controller
                 Console.WriteLine($"Error in the field '{key}': {string.Join(", ", state.Errors.Select(e => e.ErrorMessage))}");
             }
 
-            return View(model);
+            TempData["Message"] = "You have an error in one of the fields. Please try again.";
+            return RedirectToAction("Index", "CreateCourse");
         }
 
         var newCourse = new Course
