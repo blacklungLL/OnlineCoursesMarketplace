@@ -91,13 +91,13 @@
                         <div class="user_dt_left">
                             <div class="live_user_dt">
                                 <div class="user_img5">
-                                    <img src="@Url.Content($"~/assets/images/left-imgs/img-{Model.Id}.jpg")" alt="">
+                                    <img src="@Url.Content($"~/assets/images/left-imgs/img-{Model.UserId}.jpg")" alt="">
                                 </div>
                                 <div class="user_cntnt">
-                                    <a asp-controller="OtherUserProfile" asp-action="Index" asp-route-id="@Model.Id">
+                                    <a asp-controller="OtherUserProfile" asp-action="Index" asp-route-id="@Model.UserId">
                                         <h4>@Model.AuthorName</h4></a>
                                     <form asp-controller="OtherUserProfile" asp-action="Subscribe"
-                                          asp-route-userId="@Model.Id" method="post">
+                                          asp-route-userId="@Model.UserId" method="post">
                                         <button type="submit" class="subscribe-btn">Subscribe</button>
                                     </form>
                                 </div>

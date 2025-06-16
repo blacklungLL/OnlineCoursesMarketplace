@@ -1,5 +1,6 @@
 using LmsAndOnlineCoursesMarketplace.Application.Extensions;
 using LmsAndOnlineCoursesMarketplace.Application.Interfaces.Services;
+using LmsAndOnlineCoursesMarketplace.Application.S3;
 using LmsAndOnlineCoursesMarketplace.Infrastructure.Extensions;
 using LmsAndOnlineCoursesMarketplace.Infrastructure.Services;
 using LmsAndOnlineCoursesMarketplace.MVC.Hubs;
@@ -23,6 +24,9 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
     })
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.Configure<S3Settings>(builder.Configuration.GetSection("S3"));
+builder.Services.AddSingleton<IS3Service, S3Service>();
 
 
 builder.Services.ConfigureApplicationCookie(options =>
@@ -75,5 +79,12 @@ app.MapControllerRoute(
         pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
+if (app.Environment.IsDevelopment())
+{
+    using var scope = app.Services.CreateScope();
+    var s3Service = scope.ServiceProvider.GetRequiredService<IS3Service>();
+    
+    await s3Service.EnsureBucketExistsAsync();
+}
 
 app.Run();

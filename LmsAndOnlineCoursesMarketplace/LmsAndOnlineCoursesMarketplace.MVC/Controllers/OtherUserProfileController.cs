@@ -80,6 +80,7 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Controllers
                         Price = c.Price,
                         Category = c.Category,
                         Language = c.Language,
+                        Views = c.Views,
                         UserId = c.UserId
                     })
                     .ToList() ?? new List<CourseVM>()

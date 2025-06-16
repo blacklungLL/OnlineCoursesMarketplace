@@ -7,7 +7,7 @@
 {
 	<div class="alert alert-danger">@TempData["Message"]</div>
 }
-<form asp-action="Create" method="post">
+<form asp-action="Create" method="post" enctype="multipart/form-data">
 	<div class="sa4d25">
 		<div class="container">
 			<div class="row">
@@ -37,10 +37,17 @@
 															<div class="ui input swdh19">
 																<input asp-for="Title" class="prompt srch_explore"
 																       placeholder="Course title here" maxlength="60" required/>
-																<i class="uil uil-edit icon icon8"></i>
 															</div>
 															<span asp-validation-for="Title" class="text-danger"></span>
 														</div>
+													</div>
+
+													<div class="col-lg-12 col-md-12">
+														<div class="form_group mt-30">
+															<label class="label25 text-left">Course Image*</label>
+															<input type="file" class="uploadBtn-input-preview" name="Image" id="Image" accept="image/*" required/>
+														</div>
+														<span asp-validation-for="Image" class="text-danger"></span>
 													</div>
 
 													<div class="col-lg-12 col-md-12">
