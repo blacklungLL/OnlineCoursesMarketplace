@@ -4,6 +4,7 @@ using LmsAndOnlineCoursesMarketplace.Application.S3;
 using LmsAndOnlineCoursesMarketplace.Infrastructure.Extensions;
 using LmsAndOnlineCoursesMarketplace.Infrastructure.Services;
 using LmsAndOnlineCoursesMarketplace.MVC.Hubs;
+using LmsAndOnlineCoursesMarketplace.MVC.Middleware;
 using LmsAndOnlineCoursesMarketplace.Persistence.Contexts;
 using LmsAndOnlineCoursesMarketplace.Persistence.Extensions;
 using Microsoft.AspNetCore.Identity;
@@ -60,10 +61,23 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles(); 
 app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.Use(async (context, next) =>
+{
+    await next();
+    
+    if (context.Response.StatusCode == 404 && !context.Request.Path.StartsWithSegments("/api"))
+    {
+        context.Response.Redirect("/errors/404.html");
+    }
+});
+
+app.UseMiddleware<CustomAccessDeniedMiddleware>();
 
 app.MapStaticAssets();
 
