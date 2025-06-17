@@ -17,7 +17,7 @@
  
 3. В LmsAndOnlineCoursesMarketplace/LmsAndOnlineCoursesMarketplace.MVC/appsettings.json укажите свой ConnectionString. 
  
-4. Применить миграции к базе данных и по желанию заполнить их данными.
+4. Применить миграции к базе данных и по желанию заполнить таблицы данными.
 
 5. Для работы c S3 требуется создать контейнер MinIO и создать там бакет с именем my-courses-media
  
