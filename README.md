@@ -1,4 +1,4 @@
-# OnlineCoursesMarketplace
+# Online Courses Marketplace
 
 ## MVC Project with S3
 
