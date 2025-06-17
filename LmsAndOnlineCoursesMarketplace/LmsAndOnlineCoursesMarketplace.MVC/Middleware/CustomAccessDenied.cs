@@ -20,7 +20,7 @@ namespace LmsAndOnlineCoursesMarketplace.MVC.Middleware
 
             if (context.Response.StatusCode == StatusCodes.Status403Forbidden)
             {
-                _logger.LogWarning("403 Forbidden — пользователь перенаправлен на /errors/403.html");
+                _logger.LogWarning("403 Forbidden — User relocated to /errors/403.html");
 
                 context.Response.Redirect("/errors/403.html");
             }
